@@ -10,14 +10,14 @@
                 meny
             </button>
               <button
-                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'eventItem'}"
-                  @click="showFoodItemForm"
+                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'events'}"
+                  @click="currentForm = 'events'"
               >
                   händelser
               </button>
               <button
-                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'roomItem'}"
-                  @click="showFoodItemForm"
+                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'rooms'}"
+                  @click="currentForm = 'rooms'"
               >
                   vandrarhem
               </button>
@@ -25,12 +25,13 @@
 
           <section>
             <CreateFoodItemForm v-if="currentForm === 'foodItem'"  :food-categories="foodCategories"/>
+            <CreateEventForm v-else-if="currentForm === 'events'" />
           </section>
 
           <h3 class="admin__header--divider"> Skapade </h3>
 
           <section class="admin__list-items">
-            <section v-if="currentForm === 'foodItem'" v-for="item in foodItems">
+            <div v-if="currentForm === 'foodItem'" v-for="item in foodItems">
               <ListItemLayout
                 :delete-path="`admin/food-items/${item.id}`"
                 :item-id="item.id"
@@ -42,10 +43,29 @@
                   <p>{{ item.price }}</p>
 
                 <template v-slot:edit>
-                  <EditFoodItemsForm v-if="currentForm === 'foodItem'" :food-categories="foodCategories" :item="item"/>
+                  <CreateFoodItemForm :isEdit="true" :food-categories="foodCategories" :item="item"/>
                 </template>
               </ListItemLayout>
-            </section>
+            </div>
+
+            <div v-if="currentForm === 'events'" v-for="item in events">
+              <ListItemLayout
+                :delete-path="`admin/events/${item.id}`"
+                :item-id="item.id"
+              >
+                  <p>{{ item.id }}</p>
+                  <p>{{ item.title }}</p>
+                  <p>{{ item.desc }}</p>
+                  <p>{{ item.date }}</p>
+                  <p>{{ item.location }}</p>
+                  <p>{{ item.time }}</p>
+
+                <template v-slot:edit>"
+                  <CreateEventForm :isEdit="true"/>
+                </template>
+              </ListItemLayout>
+            </div>
+
           </section>
     </MainWidthLayout>
 </template>
@@ -53,14 +73,16 @@
 <script setup>
   import { ref } from 'vue';
   import CreateFoodItemForm from './components/CreateFoodItemForm.vue';
-import ListItemLayout from './layout/ListItemLayout.vue';
-import EditFoodItemsForm from './components/EditFoodItemsForm.vue';
+  import CreateEventForm from './components/CreateEventForm.vue';
+  import ListItemLayout from './layout/ListItemLayout.vue';
   import MainWidthLayout from "../../layouts/MainWidthLayout.vue";
 
   const currentForm = ref('foodItem');
+
   defineProps({
       foodCategories: Array,
       foodItems: Array,
+      events: Array,
   });
 
 

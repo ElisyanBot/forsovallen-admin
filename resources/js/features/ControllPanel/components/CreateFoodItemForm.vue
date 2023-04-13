@@ -1,9 +1,9 @@
 <template>
-    <form class="admin__form" @submit.prevent="create">
+    <form :class="{'admin__form':true, 'admin__form--edit': isEdit}" @submit.prevent="create">
       <div class="admin__form-inputs">
           <div class="form__first-col">
               <div>
-                <input class="input" placeholder="name" v-model="form.name"/>
+                <input class="input" placeholder="rubrik" v-model="form.name"/>
               </div>
               <div>
                   <textarea class="input input--textarea" placeholder="beskrivning" v-model="form.desc"></textarea>
@@ -11,7 +11,7 @@
           </div>
           <div class="form__second-col">
               <div>
-                  <input class="input" placeholder="price" v-model="form.price"/>
+                  <input class="input" placeholder="pris" v-model="form.price"/>
               </div>
 
               <div>
@@ -22,13 +22,13 @@
               </div>
 
               <div>
-                <label for=""> order status</label>
+                <label for=""> finns inte i lager</label>
                 <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
               </div>
           </div>
       </div>
         <div class="admin__form__btn-container">
-            <button class="form--cta" type="submit"> skapa </button>
+            <button class="form--cta" type="submit"> {{ isEdit ? 'ändra' : 'skapa'}}</button>
         </div>
     </form>
 </template>
@@ -36,20 +36,27 @@
 <script setup>
     import { useForm } from '@inertiajs/vue3';
 
-    defineProps({
-        foodCategories: Array,
+    const {isEdit, item} = defineProps({
+        foodCategories: Array,   
+        item: Object,
+        isEdit: {
+            type: Boolean,
+            default: false,
+        },
     })
 
-  const form = useForm({
-      name: '',
-      desc:'',
-      status:'0',
-      price:'',
-      by_category_id: '',
-  });
+    const form = useForm({
+        name: isEdit ? item.name : '',
+        desc: isEdit ? item.desc : '',
+        status: isEdit ? (item.status ? true : false) : '0',
+        price: isEdit ? item.price : '',
+        by_category_id: isEdit ? item.by_category_id : '',
+    });
 
   const create = () => {
-    form.post('/admin/food-items');
+    isEdit
+        ? form.put(`/admin/food-items/${item.id}`)
+        : form.post('/admin/food-items');
   };
 
 </script>
@@ -108,7 +115,7 @@
         }
 
         .input--textarea {
-            height: 10rem;
+            height: 12rem;
         }
     }
 
