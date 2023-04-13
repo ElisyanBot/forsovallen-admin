@@ -47,7 +47,6 @@ class FoodItemController extends Controller
             'desc' => 'required|string',
             'status' => 'required|boolean',
             'price' => 'required|int',
-            'cat_id' => 'required|string',
         ]));
     }
 

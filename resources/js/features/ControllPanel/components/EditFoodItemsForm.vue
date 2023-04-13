@@ -15,7 +15,7 @@
             <input placeholder="price" v-model="form.price"/> 
           </div>
       </div>
-      <button type="submit"> updatera </button>
+      <button type="submit" @click="$emit(editSubmit)"> updatera </button>
     </form>
 </template>
 
