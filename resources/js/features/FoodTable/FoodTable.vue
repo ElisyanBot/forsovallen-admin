@@ -63,6 +63,7 @@
   import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
   import TableCategory from './components/TableCategory.vue'
   import FoodItem from './components/FoodItem.vue'
+  import { warmFood, coldFood, desserts, drinks } from './assets/_menyItems.js'
   import { ref, watchEffect } from 'vue'
 
   const rowsNr = ref(1)

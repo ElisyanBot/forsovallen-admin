@@ -54,6 +54,7 @@
   import InfoIcon from './components/InfoIcon.vue'
   import InfoText from './components/InfoText.vue'
   import InfoTextLayout from './components/InfoTextLayout.vue'
+  import infoTextObj from './assets/_infoTextObj.js'
   import { ref, watchEffect } from 'vue'
 
   const currentInfoObj = ref('cafe')
