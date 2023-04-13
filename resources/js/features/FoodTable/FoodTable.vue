@@ -44,10 +44,9 @@
         <FoodItem
           v-for="(item, index) in foodItems"
           :key="index"
-          :header-txt="item.headerTxt"
-          :text="item.text"
-          :out-of-stock="item.outOfStock"
-          :img-src="item.imgSrc"
+          :header-txt="item.name"
+          :text="item.desc"
+          :out-of-stock="item.status"
         />
       </div>
     </MainWidthLayout>
@@ -63,14 +62,18 @@
   import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
   import TableCategory from './components/TableCategory.vue'
   import FoodItem from './components/FoodItem.vue'
-  import { warmFood, coldFood, desserts, drinks } from './assets/_menyItems.js'
+  import {coldFood, desserts, drinks } from './assets/_menyItems.js'
   import { ref, watchEffect } from 'vue'
 
   const rowsNr = ref(1)
   const expandedSection = ref(false)
   const btnTxt = ref('visa mer')
-  const foodItems = ref(warmFood)
+  const foodItems = ref(props.foodItems)
   const selectedCategory = ref('warm')
+
+  const props = defineProps({
+    foodItems: Array,
+  });
 
   watchEffect(() => {
     rowsNr.value = Math.ceil(foodItems.value.length / 2)
@@ -87,7 +90,8 @@
   }
 
   const showWarmFood = () => {
-    foodItems.value = warmFood
+    foodItems.value = props.foodItems;
+    console.log(props.foodItems)
     selectedCategory.value = 'warm'
   }
 

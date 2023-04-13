@@ -10,10 +10,11 @@ class FoodItem extends Model
     use HasFactory;
 
      protected $fillable = [
-        'name',
-        'desc',
-        'status',
-        'price',
+         'name',
+         'desc',
+         'status',
+         'price',
+         'by_category_id',
     ];
 
      public function foodCategory()

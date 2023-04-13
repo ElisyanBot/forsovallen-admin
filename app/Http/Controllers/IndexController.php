@@ -9,6 +9,9 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return Inertia::render( 'Index/Index', []);
+        //TODO: change so that only necessary data is sent to the frontend
+        return Inertia::render('Index/Index', [
+            'foodItems' => \App\Models\FoodItem::all()
+        ]);
     }
 }

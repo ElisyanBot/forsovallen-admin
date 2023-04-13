@@ -20,7 +20,7 @@
                 </div>
                 <div>
                     <label for=""> order status</label>
-                    <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
+                    <input class="" type="checkbox" placeholder="title"  v-model="form.status"/>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
   const form = useForm({
     name: item.name,
     desc: item.desc,
-    status: item.status,
+    status: item.status ? true : false,
     price: item.price,
     by_category_id: item.by_category_id,
   });

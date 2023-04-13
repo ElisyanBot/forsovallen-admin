@@ -3,7 +3,7 @@
   <main>
     <AboutUs />
     <LearnMoreFeature />
-    <FoodTable />
+    <FoodTable :food-items="foodItems" />
   </main>
   <footer></footer>
 </template>
@@ -14,6 +14,9 @@
   import AboutUs from '../../components/AboutUs.vue'
   import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
 
+  defineProps({
+    foodItems: Array,
+  })
 
 </script>
 
