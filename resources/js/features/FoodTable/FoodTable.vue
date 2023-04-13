@@ -10,26 +10,26 @@
         <TableCategory
           font-awesome-class="bowl-rice"
           text="varm mat"
-          :selected="selectedCategory === 'warm'"
-          @handle-click="showWarmFood"
+          :selected="selectedCategory === 1"
+          @handle-click="selectedCategory = 1"
         />
         <TableCategory
           font-awesome-class="bowl-food"
           text="kall mat"
-          :selected="selectedCategory === 'cold'"
-          @handle-click="showColdFood"
+          :selected="selectedCategory === 2"
+          @handle-click="selectedCategory = 2"
         />
         <TableCategory
           font-awesome-class="ice-cream"
           text="fika"
-          :selected="selectedCategory === 'dessert'"
-          @handle-click="showDesserts"
+          :selected="selectedCategory === 3"
+          @handle-click="selectedCategory = 3"
         />
         <TableCategory
           font-awesome-class="mug-hot"
           text="dryck"
-          :selected="selectedCategory === 'drinks'"
-          @handle-click="showDrinks"
+          :selected="selectedCategory === 4"
+          @handle-click="selectedCategory = 4"
         />
       </div>
     </MainWidthLayout>
@@ -40,14 +40,16 @@
           'food-table__items--expanded': expandedSection
         }"
       >
-        <div class="food-table__divider" :style="{ 'grid-row-end': 'span ' + `${rowsNr}` }"></div>
-        <FoodItem
-          v-for="(item, index) in foodItems"
-          :key="index"
-          :header-txt="item.name"
-          :text="item.desc"
-          :out-of-stock="item.status"
-        />
+          <div class="food-table__divider" :style="{ 'grid-row-end': 'span ' + `${rowsNr}` }">
+              <!-- divider -->
+          </div>
+          <FoodItem
+              v-for="(item, index) in foodItems"
+              :key="index"
+              :header-txt="item.name"
+              :text="item.desc"
+              :out-of-stock="item.status"
+          />
       </div>
     </MainWidthLayout>
     <div class="food-table__btn-container">
@@ -63,13 +65,13 @@
   import TableCategory from './components/TableCategory.vue'
   import FoodItem from './components/FoodItem.vue'
   import {coldFood, desserts, drinks } from './assets/_menyItems.js'
-  import { ref, watchEffect } from 'vue'
+  import {computed, ref, watchEffect} from 'vue'
 
   const rowsNr = ref(1)
   const expandedSection = ref(false)
   const btnTxt = ref('visa mer')
-  const foodItems = ref(props.foodItems)
-  const selectedCategory = ref('warm')
+  const selectedCategory = ref(1)
+  const foodItems = computed(() => props.foodItems.filter(i => i.by_category_id === selectedCategory.value ));
 
   const props = defineProps({
     foodItems: Array,
@@ -87,27 +89,6 @@
     } else {
       btnTxt.value = 'visa mer'
     }
-  }
-
-  const showWarmFood = () => {
-    foodItems.value = props.foodItems;
-    console.log(props.foodItems)
-    selectedCategory.value = 'warm'
-  }
-
-  const showColdFood = () => {
-    foodItems.value = coldFood
-    selectedCategory.value = 'cold'
-  }
-
-  const showDesserts = () => {
-    foodItems.value = desserts
-    selectedCategory.value = 'dessert'
-  }
-
-  const showDrinks = () => {
-    foodItems.value = drinks
-    selectedCategory.value = 'drinks'
   }
 </script>
 

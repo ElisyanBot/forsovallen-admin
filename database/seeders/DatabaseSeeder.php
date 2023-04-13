@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\FoodCategory::factory()->create([
-            'name' => 'drinks',
+            'name' => 'desserts',
         ]);
 
         \App\Models\FoodCategory::factory()->create([
-            'name' => 'desserts',
+            'name' => 'drinks',
         ]);
     }
 }
