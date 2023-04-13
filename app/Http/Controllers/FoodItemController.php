@@ -42,7 +42,7 @@ class FoodItemController extends Controller
      */
     public function update(Request $request, FoodItem $foodItem)
     {
-        $foodItem->updated($request->validate([
+        $foodItem->update($request->validate([
             'name' => 'required|string',
             'desc' => 'required|string',
             'status' => 'required|boolean',
