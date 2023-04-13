@@ -24,7 +24,7 @@
           </div>
 
           <section>
-            <CreateFoodItemForm v-if="currentForm === 'foodItem'" />
+            <CreateFoodItemForm v-if="currentForm === 'foodItem'"  :food-categories="foodCategories"/>
           </section>
 
           <h3 class="admin__header--divider"> Skapade </h3>
@@ -42,7 +42,7 @@
                   <p>{{ item.price }}</p>
 
                 <template v-slot:edit>
-                  <EditFoodItemsForm v-if="currentForm === 'foodItem'" :item="item"/>
+                  <EditFoodItemsForm v-if="currentForm === 'foodItem'" :food-categories="foodCategories" :item="item"/>
                 </template>
               </ListItemLayout>
             </section>
@@ -59,8 +59,9 @@ import EditFoodItemsForm from './components/EditFoodItemsForm.vue';
 
   const currentForm = ref('foodItem');
   defineProps({
-    foodItems: Array,
-  })
+      foodCategories: Array,
+      foodItems: Array,
+  });
 
 
   const showFoodItemForm = () => {

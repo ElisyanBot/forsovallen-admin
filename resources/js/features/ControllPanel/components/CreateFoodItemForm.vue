@@ -13,6 +13,14 @@
               <div>
                   <input class="input" placeholder="price" v-model="form.price"/>
               </div>
+
+              <div>
+                 <select class="input" v-model="form.by_category_id">
+                     <option value="" disabled selected> kategori </option>
+                     <option v-for="category in foodCategories" :value="category.id">{{ category.name }}</option>
+                 </select>
+              </div>
+
               <div>
                 <label for=""> order status</label>
                 <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
@@ -26,19 +34,25 @@
 </template>
 
 <script setup>
-  import { useForm } from '@inertiajs/vue3';
+    import { useForm } from '@inertiajs/vue3';
+
+    defineProps({
+        foodCategories: Array,
+    })
 
   const form = useForm({
-    name: '',
-    desc:'',
-    status:'0',
-    price:'',
+      name: '',
+      desc:'',
+      status:'0',
+      price:'',
+      by_category_id: '',
   });
 
   const create = () => {
     form.post('/admin/food-items');
   };
-</script>=""
+
+</script>
 
 <style lang="scss">
     .admin__form {

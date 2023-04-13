@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('food_items', function (Blueprint $table) {
-            $table->string('name');
-            $table->mediumText('desc');
-            $table->integer('price');
-            $table->boolean('status');
+            $table->foreignIdFor(
+                \App\Models\FoodCategory::class,
+                'by_category_id'
+            )->nullable()->constrained('food_categories');
         });
     }
 
@@ -25,10 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('food_items', function (Blueprint $table) {
-            $table->dropColumn('name');
-            $table->dropColumn('desc');
-            $table->dropColumn('price');
-            $table->dropColumn('status');
+            $table->dropColumn('by_category_id');
         });
     }
 };

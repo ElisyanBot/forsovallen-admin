@@ -14,6 +14,13 @@ class FoodItem extends Model
         'desc',
         'status',
         'price',
-        'cat_id',
     ];
+
+     public function foodCategory()
+    {
+        return $this->belongsTo(
+            \App\Models\FoodCategory::class,
+            'by_category_id',
+        );
+    }
 }

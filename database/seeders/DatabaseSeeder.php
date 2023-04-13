@@ -18,5 +18,21 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        \App\Models\FoodCategory::factory()->create([
+            'name' => 'warmFood',
+        ]);
+
+        \App\Models\FoodCategory::factory()->create([
+            'name' => 'coldFood',
+        ]);
+
+        \App\Models\FoodCategory::factory()->create([
+            'name' => 'drinks',
+        ]);
+
+        \App\Models\FoodCategory::factory()->create([
+            'name' => 'desserts',
+        ]);
     }
 }

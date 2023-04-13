@@ -3,7 +3,7 @@
     header
   </header>
   <main>
-    <ControlPanel :food-items="foodItems" :events="events" :rooms="rooms"/>
+    <ControlPanel :foodCategories="foodCategories" :food-items="foodItems" :events="events" :rooms="rooms"/>
   </main>
   <footer>
 
@@ -13,10 +13,11 @@
 <script setup>
   import ControlPanel from '../../features/ControllPanel/ControlPanel.vue';
   defineProps({
-    foodItems: Array,
-    rooms: Array,
-    events: Array,
-  })  
+      foodCategories: Array,
+      foodItems: Array,
+      rooms: Array,
+      events: Array,
+  })
 </script>
 
 <style scoped lang="scss">

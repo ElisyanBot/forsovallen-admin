@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('food_items', function (Blueprint $table) {
-            $table->string('name');
-            $table->mediumText('desc');
-            $table->integer('price');
-            $table->boolean('status');
+        Schema::table('food_categories', function (Blueprint $table) {
+            $table->string('name')->after('id');
         });
     }
 
@@ -24,11 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('food_items', function (Blueprint $table) {
+        Schema::table('food_categories', function (Blueprint $table) {
             $table->dropColumn('name');
-            $table->dropColumn('desc');
-            $table->dropColumn('price');
-            $table->dropColumn('status');
         });
     }
 };

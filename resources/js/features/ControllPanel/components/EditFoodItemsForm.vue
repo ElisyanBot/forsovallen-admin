@@ -14,6 +14,11 @@
                     <input class="input" placeholder="price" v-model="form.price"/>
                 </div>
                 <div>
+                    <select class="input" v-model="form.by_category_id">
+                        <option v-for="category in foodCategories" :value="category.id">{{ category.name }}</option>
+                    </select>
+                </div>
+                <div>
                     <label for=""> order status</label>
                     <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
                 </div>
@@ -29,7 +34,8 @@
   import { useForm } from '@inertiajs/vue3';
 
   const { item } = defineProps({
-    item: Object,
+      item: Object,
+      foodCategories: Array,
   })
 
   const form = useForm({
@@ -37,6 +43,7 @@
     desc: item.desc,
     status: item.status,
     price: item.price,
+    by_category_id: item.by_category_id,
   });
 
   const edit = () => {
