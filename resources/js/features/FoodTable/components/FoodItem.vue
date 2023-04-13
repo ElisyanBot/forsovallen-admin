@@ -23,7 +23,6 @@
   defineProps({
     imgSrc: {
       type: String,
-      required: true
     },
     headerTxt: {
       type: String,
@@ -44,29 +43,28 @@
 <style lang="scss">
   .food-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 4rem;
-
-    border-bottom: 3px dashed #f2f2f2;
-    color: #f2f2f2;
-
+    gap: 2rem;
+      background-color: #f2f2f2;
+      color: #f2f2f2;
     width: 100%;
-    max-width: 53rem;
-    height: 20rem;
+
+      max-width: 55.5rem;
+      height: 17.5rem;
+      overflow: hidden;
 
     picture {
-      border-radius: 0.5rem;
       overflow: hidden;
-      height: 15rem;
+      height: inherit;
       width: 100%;
-      max-width: 15rem;
+      max-width: 17.5rem;
     }
   }
   .food-item__text-block {
     height: 15rem;
     display: flex;
     flex-direction: column;
+      width: 100%;
     gap: 1.2rem;
 
     h5 {
@@ -77,6 +75,7 @@
     }
     p {
       font-size: 1.8rem;
+        color: #040410;
     }
   }
   .food-item--disabled {
@@ -108,7 +107,7 @@
       font-size: 1.8rem;
       text-align: center;
       text-transform: uppercase;
-      border: 3px dashed #c64533;
+      border: 2px solid #c64533;
       border-radius: 0.5rem;
     }
   }

@@ -118,7 +118,7 @@
     grid-template-rows: auto;
     justify-content: space-between;
     padding: 0 2rem;
-    gap: 1rem;
+    gap: 3rem 0;
     width: 100%;
     max-height: 50rem;
     overflow: hidden;
@@ -128,7 +128,7 @@
       content: ' ';
       overflow: hidden;
       padding-bottom: 1rem;
-      border-right: 2px dashed #f8f8f8da;
+      border-right: 3px solid #f8f8f8da;
 
       justify-self: center;
       grid-column-start: span divider;
