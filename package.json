@@ -10,8 +10,10 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@fortawesome/vue-fontawesome": "^3.0.3",
         "@inertiajs/vue3": "^1.0.2",
         "@vitejs/plugin-vue": "^4.1.0",
+        "sass": "^1.62.0",
         "vue": "^3.2.36"
     }
 }

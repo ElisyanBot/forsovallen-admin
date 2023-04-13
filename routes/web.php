@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FoodItemController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,3 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+  return 'hello';
+});
+
+Route::prefix('/admin')->group( function () {
+  
+  Route::get('/', [AdminController::class, 'index']);
+  Route::resource('/food-items', FoodItemController::class)
+    ->except(['create, edit']);
+
+});

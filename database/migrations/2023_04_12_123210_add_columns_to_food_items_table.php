@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::table('food_items', function (Blueprint $table) {
             $table->string('name');
-            $table->string('description');
+            $table->mediumText('desc');
             $table->integer('price');
             $table->boolean('status');
-            $table->integer('cat_id');
+            $table->integer('cat_id')->nullable();
         });
     }
 

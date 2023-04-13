@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FoodItem;
 use Illuminate\Http\Request;
 
 class FoodItemController extends Controller
@@ -15,50 +16,46 @@ class FoodItemController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        FoodItem::create($request->validate([
+            'name' => 'required|string',
+            'desc' => 'required|string',
+            'status' => 'required|boolean',
+            'price' => 'required|int',
+            'cat_id' => 'int',
+        ]));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(FoodItem $foodItem)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return FoodItem::find($foodItem);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, FoodItem $foodItem)
     {
-        //
+        $foodItem->updated($request->validate([
+            'name' => 'required|string',
+            'desc' => 'required|string',
+            'status' => 'required|boolean',
+            'price' => 'required|int',
+            'cat_id' => 'required|string',
+        ]));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(FoodItem $foodItem)
     {
-        //
+        $foodItem->delete();
     }
 }
