@@ -12,6 +12,8 @@ class AdminController extends Controller
         return Inertia::render('Admin/Index', [
             'foodItems' => \App\Models\FoodItem::all(),
             'foodCategories' => \App\Models\FoodCategory::all(),
+            'events' => \App\Models\Event::all(),
+            'rooms' => \App\Models\Room::all(),
         ]);
     }
 }

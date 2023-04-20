@@ -13,18 +13,8 @@
           </div>
           <div class="form__second-col">
               <div>
-                  <input class="input" placeholder="plats" v-model="form.location"/>
-                <div> {{ form.errors.location }} </div>
-              </div>
-
-              <div>
-                 <input class="input" type="time" placeholder="tid" v-model="form.time" />
-                <div> {{ form.errors.time }} </div>
-              </div>
-
-              <div>
-                <input class="input" type="date" placeholder="datum" v-model="form.date"/>
-                <div> {{ form.errors.date }} </div>
+                <label for=""> finns inte i lager</label>
+                <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
               </div>
           </div>
       </div>
@@ -48,15 +38,13 @@
   const form = useForm({
     title: isEdit ? item.title : '',
     desc: isEdit ? item.desc : '',
-    location: isEdit ? item.location : '',
-    date: isEdit ? item.date : '',
-    time: isEdit ? item.time : '',
+    status: isEdit ? item.status : '',
   });
 
   const submit = () => {
     isEdit
-        ? form.put(`/admin/events/${item.id}`)
-        : form.post('/admin/events');
+        ? form.put(`/admin/rooms/${item.id}`)
+        : form.post('/admin/rooms');
   };
 
 </script>

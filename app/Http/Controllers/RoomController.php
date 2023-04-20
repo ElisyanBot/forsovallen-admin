@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Models\Room;
 
-class EventController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,19 +20,17 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        Event::create($request->validate([
+        Room::create($request->validate([
             'title' => 'required|string',
             'desc' => 'required|string',
-            'date' => 'required|date',
-            'time' => 'required|string',
-            'location' => 'required|string',
+            'status' => 'required|boolean',
         ]));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(string $id)
     {
         //
     }
@@ -41,22 +38,20 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Room $room)
     {
-        $event->update($request->validate([
+        $room->update($request->validate([
             'title' => 'required|string',
             'desc' => 'required|string',
-            'date' => 'required|date',
-            'time' => 'required|string',
-            'location' => 'required|string',
+            'status' => 'required|boolean',
         ]));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Room $room)
     {
-        $event->delete();
+        $room->delete();
     }
 }

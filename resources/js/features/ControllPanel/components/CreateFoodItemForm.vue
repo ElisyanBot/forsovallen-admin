@@ -1,17 +1,20 @@
 <template>
-    <form :class="{'admin__form':true, 'admin__form--edit': isEdit}" @submit.prevent="create">
+    <form :class="{'admin__form': !isEdit, 'admin__form--edit': isEdit }" @submit.prevent="create">
       <div class="admin__form-inputs">
           <div class="form__first-col">
               <div>
                 <input class="input" placeholder="rubrik" v-model="form.name"/>
+                <div> {{ form.errors.name }} </div>
               </div>
               <div>
                   <textarea class="input input--textarea" placeholder="beskrivning" v-model="form.desc"></textarea>
+                <div> {{ form.errors.desc }} </div>
               </div>
           </div>
           <div class="form__second-col">
               <div>
                   <input class="input" placeholder="pris" v-model="form.price"/>
+                <div> {{ form.errors.price }} </div>
               </div>
 
               <div>
@@ -28,6 +31,7 @@
           </div>
       </div>
         <div class="admin__form__btn-container">
+            <button v-if="isEdit" @click.prevent="$emit('closeEdit')"> stäng </button>
             <button class="form--cta" type="submit"> {{ isEdit ? 'ändra' : 'skapa'}}</button>
         </div>
     </form>
@@ -44,6 +48,8 @@
             default: false,
         },
     })
+
+    defineEmits([ 'closeEdit' ]);
 
     const form = useForm({
         name: isEdit ? item.name : '',
@@ -66,7 +72,7 @@
         display: flex;
         flex-direction: column;
         background: #ffffff;
-        padding: 6rem;
+        padding: 6rem 0 3rem 0;
         width: 100%;
         height: 40rem;
         max-width: 130rem;
@@ -74,8 +80,9 @@
     }
 
     .admin__form--edit {
-        filter:none;
-        padding: 0;
+        filter: none;
+        padding: 0rem;
+        height: fit-content;
     }
 
     .admin__form-inputs {
@@ -125,13 +132,15 @@
         align-items: center;
         width: 80%;
         height: 5rem;
-        margin: auto;
+        margin: 3rem auto;
     }
 
     .form--cta {
         background-color: #7d9a89;
         width: 15rem;
+        height: 4rem;
         color: #ffffff;
+        font-size: 1.8rem;
         font-weight: bold;
         text-transform: uppercase;
         padding: 1rem 0;

@@ -27,6 +27,8 @@ class FoodItemController extends Controller
             'price' => 'required|int',
             'by_category_id' => 'int',
         ]));
+
+        return redirect('/admin')->with('success', 'Ett föremål har skapts till menyn');
     }
 
     /**

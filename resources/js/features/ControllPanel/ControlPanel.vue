@@ -26,6 +26,7 @@
           <section>
             <CreateFoodItemForm v-if="currentForm === 'foodItem'"  :food-categories="foodCategories"/>
             <CreateEventForm v-else-if="currentForm === 'events'" />
+            <CreateRoomForm v-else-if="currentForm === 'rooms'" />
           </section>
 
           <h3 class="admin__header--divider"> Skapade </h3>
@@ -60,8 +61,24 @@
                   <p>{{ item.location }}</p>
                   <p>{{ item.time }}</p>
 
-                <template v-slot:edit>"
-                  <CreateEventForm :isEdit="true"/>
+                <template v-slot:edit>
+                  <CreateEventForm :item="item" :isEdit="true"/>
+                </template>
+              </ListItemLayout>
+            </div>
+             
+            <div v-if="currentForm === 'rooms'" v-for="item in rooms">
+              <ListItemLayout
+                :delete-path="`admin/rooms/${item.id}`"
+                :item-id="item.id"
+              >
+                  <p>{{ item.id }}</p>
+                  <p>{{ item.title }}</p>
+                  <p>{{ item.desc }}</p>
+                  <p>{{ item.status }}</p>
+
+                <template v-slot:edit>
+                  <CreateRoomForm :item="item" :isEdit="true"/>
                 </template>
               </ListItemLayout>
             </div>
@@ -74,6 +91,7 @@
   import { ref } from 'vue';
   import CreateFoodItemForm from './components/CreateFoodItemForm.vue';
   import CreateEventForm from './components/CreateEventForm.vue';
+  import CreateRoomForm from './components/CreateRoomForm.vue';
   import ListItemLayout from './layout/ListItemLayout.vue';
   import MainWidthLayout from "../../layouts/MainWidthLayout.vue";
 
@@ -83,6 +101,7 @@
       foodCategories: Array,
       foodItems: Array,
       events: Array,
+      rooms: Array,
   });
 
 

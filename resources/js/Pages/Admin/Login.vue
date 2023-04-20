@@ -1,0 +1,93 @@
+<template>
+  <MainWidthLayout>
+  <form class="login-form" @submit.prevent="login">
+        <div class="login-form__input-container">
+            <label for="email"></label>
+            <input type="email" id="email" placeholder="email" v-model="form.email"/>
+        </div >
+        <div class="login-form__input-container">
+            <label for="password"></label>
+            <input type="password" id="password" placeholder="email" v-model="form.password"/>
+        </div>
+        <div class="login-form__input-container checkbox-container">
+          <input type="checkbox" id="stayLoggedIn" v-model="form.stayLoggedIn"/>
+          <label for="stayLoggedIn">Håll mig inloggad på den här enheten</label>
+        </div>
+        <div class="login-form__input-container">
+            <button type="submit"> login </button>
+        </div>
+    </form>
+  </MainWidthLayout>
+</template>
+
+<script setup>
+  import { useForm } from '@inertiajs/vue3';
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue';
+  
+  const form = useForm({
+    email: '',
+    password: '',
+    stayLoggedIn: false,
+  });
+
+  const login = () => form.post('/admin/login');
+</script>
+
+<style scoped lang="scss">
+  .login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    height: 50rem;
+    width: 100rem;
+    margin: auto;
+
+    .login-form__input-container{
+      margin: 2rem 0;
+
+      input[type="email"], 
+      input[type="password"], 
+      button {
+        width: 50rem;
+        height: 6rem;
+      }
+
+      input {
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-size: 1.8rem;
+      }
+
+      input[type="checkbox"]{
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      button {
+        background-color: #7D9A89;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        &:hover { 
+          cursor: pointer;
+        }
+      }
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      width: 50rem;
+      height: 5rem;
+      gap: 2rem;
+      font-size: 1.8rem;
+    }
+  }
+  
+</style>

@@ -1,7 +1,7 @@
 <template>
     <div class="admin__list-item__body">
         <div class="list-item__img">
-
+            <slot name="image" />
         </div>
       <div class="list-items">
           <slot />
@@ -13,7 +13,6 @@
     </div>
     <div class="admin__list-item__edit-form admin__form" v-if="showForm">
         <slot name="edit" />
-        <button @click="showForm = false"> close </button>
     </div>
 </template>
 
@@ -59,6 +58,17 @@
     }
 
     .admin__list-item__edit-form {
-        height: 30rem;
+        height: fit-content;
+    }     
+    
+    .close-btn {
+        background: none;
+        width: 15rem;
+        height: 4rem;
+        border: 1px solid #c64533;
+        border-radius: 0.5rem;
+        color: #c64533;
+        font-size: 1.8rem;
+        font-weight: bold;
     }
 </style>
