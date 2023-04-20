@@ -36,6 +36,7 @@
         <ListItemLayout
           :delete-path="`admin/food-items/${item.id}`"
           :item-id="item.id"
+          :img-src="item.image.src"
         >
           <p>{{ item.id }}</p>
           <p>{{ item.name }}</p>
@@ -69,7 +70,7 @@
         </ListItemLayout>
       </div>
     </section>
-             
+
     <section v-if="currentForm === 'rooms'" class="admin__list-items">
       <div v-for="item in rooms">
         <ListItemLayout

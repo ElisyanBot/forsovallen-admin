@@ -1,8 +1,8 @@
 <template>
   <div class="admin__list-item__body">
-    <div class="list-item__img">
-      <slot name="image" />
-    </div>
+    <picture class="list-item__img">
+        <img :src="imgSrc" alt="item image" />
+    </picture>
     <div class="list-items">
       <slot />
     </div>
@@ -23,12 +23,13 @@ import { ref } from 'vue'
 defineProps({
   itemId: Number,
   deletePath: String,
+    imgSrc: String
 })
 
 const showForm = ref(false)
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
     .admin__list-item__body {
         position: relative;
         z-index: 2;
@@ -39,7 +40,7 @@ const showForm = ref(false)
         width: 100%;
         max-width: 130rem;
         height: 8.6rem;
-        padding: 0rem 1rem;
+        padding: 0rem 1rem 0 0;
         filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
 
         .list-items {
@@ -55,12 +56,23 @@ const showForm = ref(false)
            width: 5rem;
            height: 5rem;
        }
+
+        .list-item__img {
+            width: 10rem;
+            height: inherit;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
     }
 
     .admin__list-item__edit-form {
         height: fit-content;
-    }     
-    
+    }
+
     .close-btn {
         background: none;
         width: 15rem;

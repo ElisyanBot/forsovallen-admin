@@ -1,6 +1,6 @@
 <template>
   <li class="header-nav-item header-nav-item__link">
-    <a target="_blank" :href="aLink">{{ text }}</a>
+    <a :target="target" :href="aLink">{{ text }}</a>
     <FontAwesomeIcon icon="arrow-up-right-from-square" />
   </li>
 </template>
@@ -17,6 +17,10 @@ defineProps({
     type: String,
     required: true,
   },
+    target: {
+        type: String,
+        required: false,
+    }
 })
 </script>
 

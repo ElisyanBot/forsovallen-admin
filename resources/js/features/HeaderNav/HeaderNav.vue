@@ -10,8 +10,8 @@
       </ul>
       <div class="header-nav__logo">logo</div>
       <ul class="header-nav__desktop-menu-row">
-        <NavLinkIem text="evenemang" a-link="https://facebook.com" />
-        <NavLinkIem text="hitta hit" a-link="https://facebook.com" />
+        <NavLinkItem text="evenemang" a-link="/events" />
+        <NavLinkItem target="_blank" text="hitta hit" a-link="https://facebook.com" />
       </ul>
     </header>
   </MainWidthLayout>
@@ -20,7 +20,8 @@
 <script setup>
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 import NavItem from './components/NavItem.vue'
-import NavLinkIem from './components/NavLinkIem.vue'
+import NavLinkItem from './components/NavLinkItem.vue'
+
 </script>
 
 <style lang="scss">
