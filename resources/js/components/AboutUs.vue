@@ -20,7 +20,7 @@
             </p>
           </article>
           <div class="about-us__img-container">
-            <img src="/public/frosovallenHouse.png" alt="bild på försvallen" />
+            <img src="/images/frosovallenHouse.png" alt="bild på försvallen" />
           </div>
         </div>
         <!-- shape -->

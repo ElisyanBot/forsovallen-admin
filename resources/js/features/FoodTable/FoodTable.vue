@@ -46,6 +46,7 @@
         <FoodItem
           v-for="(item, index) in foodItems"
           :key="index"
+          :img-src="item.image.src"
           :header-txt="item.name"
           :text="item.desc"
           :out-of-stock="item.status"
@@ -89,6 +90,7 @@ const handleClick = () => {
     btnTxt.value = 'visa mer'
   }
 }
+
 </script>
 
 <style lang="scss">

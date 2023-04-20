@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FoodItem;
+use App\Models\FoodItemImage;
 use Illuminate\Http\Request;
 
 class FoodItemController extends Controller
@@ -20,13 +21,20 @@ class FoodItemController extends Controller
      */
     public function store(Request $request)
     {
-        FoodItem::create($request->validate([
+        $test = FoodItem::create($request->validate([
             'name' => 'required|string',
             'desc' => 'required|string',
             'status' => 'required|boolean',
             'price' => 'required|int',
             'by_category_id' => 'int',
         ]));
+
+        if($request->hasFile('image')) {
+            $path = $request->file('image')->store('FoodItemImg','public');
+            $test->image()->save(new FoodItemImage([
+                'filename' => $path
+            ]));
+        }
 
         return redirect('/admin')->with('success', 'Ett föremål har skapts till menyn');
     }

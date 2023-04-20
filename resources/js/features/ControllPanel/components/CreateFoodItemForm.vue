@@ -23,6 +23,9 @@
             <option v-for="category in foodCategories" :value="category.id">{{ category.name }}</option>
           </select>
         </div>
+        <div>
+          <input type="file" name="image" @input="handleFile" />
+        </div>
 
         <div>
           <label for=""> finns inte i lager</label>
@@ -41,7 +44,7 @@
 import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
-  foodCategories: Array,   
+  foodCategories: Array,
   item: Object,
   isEdit: {
     type: Boolean,
@@ -57,12 +60,17 @@ const form = useForm({
   status: props.isEdit ? (props.item.status ? true : false) : '0',
   price: props.isEdit ? props.item.price : '',
   by_category_id: props.isEdit ? props.item.by_category_id : '',
+  image: null,
 })
 
 const create = () => {
   props.isEdit
     ? form.put(`/admin/food-items/${props.item.id}`)
     : form.post('/admin/food-items')
+}
+
+const handleFile = (e) => {
+  form.image = e.target.files[0]
 }
 
 </script>

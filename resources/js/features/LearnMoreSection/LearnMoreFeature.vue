@@ -2,39 +2,39 @@
   <MainWidthLayout>
     <div class="icon__container">
       <InfoIcon
-        bg-src="./learn-more__cafe-img.png"
+        bg-src="/img/learn-more__cafe-img.png"
         text="cafe"
         icon-class="utensils"
         @handle-click="() => (currentInfoObj = 'cafe')"
       />
 
       <InfoIcon
-        bg-src="./learn-more__vandrarhem-img.png"
+        bg-src="/img/learn-more__vandrarhem-img.png"
         text="vandrarhem"
         icon-class="house"
         @handle-click="() => (currentInfoObj = 'vandrarhem')"
       />
 
       <InfoIcon
-        bg-src="./learn-more__event-img.png"
+        bg-src="/img/learn-more__event-img.png"
         text="event"
         icon-class="calendar"
         @handle-click="() => (currentInfoObj = 'event')"
       />
 
       <InfoIcon
-        bg-src="./learn-more__gudstjänst-img.png"
+        bg-src="/img/learn-more__gudstjänst-img.png"
         text="gudstjänst"
         icon-class="church"
         @handle-click="() => (currentInfoObj = 'gudstjänster')"
       />
     </div>
     <div class="info-text__line-animation">
-      <img src="/line-green.svg" alt="animation" />
+      <img src="/img/line-green.svg" alt="animation" />
       <img
         :style="{ left: arrowPlacement + '%' }"
         class="line-green__arrow"
-        src="/line-green__arrow.svg"
+        src="/img/line-green__arrow.svg"
         alt="animation"
       />
     </div>
