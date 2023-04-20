@@ -20,6 +20,7 @@ use App\Http\Controllers\RoomController;
 */
 
 Route::get('/', [IndexController::class, 'index']);
+Route::get('/events', [EventController::class, 'index']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
   Route::get('/', [AdminController::class, 'index']);
