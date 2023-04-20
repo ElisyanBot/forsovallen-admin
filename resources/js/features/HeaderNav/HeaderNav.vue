@@ -18,9 +18,9 @@
 </template>
 
 <script setup>
-  import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
-  import NavItem from './components/NavItem.vue'
-  import NavLinkIem from './components/NavLinkIem.vue'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import NavItem from './components/NavItem.vue'
+import NavLinkIem from './components/NavLinkIem.vue'
 </script>
 
 <style lang="scss">

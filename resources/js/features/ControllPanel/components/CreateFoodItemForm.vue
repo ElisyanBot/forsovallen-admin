@@ -1,69 +1,69 @@
 <template>
-    <form :class="{'admin__form': !isEdit, 'admin__form--edit': isEdit }" @submit.prevent="create">
-      <div class="admin__form-inputs">
-          <div class="form__first-col">
-              <div>
-                <input class="input" placeholder="rubrik" v-model="form.name"/>
-                <div> {{ form.errors.name }} </div>
-              </div>
-              <div>
-                  <textarea class="input input--textarea" placeholder="beskrivning" v-model="form.desc"></textarea>
-                <div> {{ form.errors.desc }} </div>
-              </div>
-          </div>
-          <div class="form__second-col">
-              <div>
-                  <input class="input" placeholder="pris" v-model="form.price"/>
-                <div> {{ form.errors.price }} </div>
-              </div>
-
-              <div>
-                 <select class="input" v-model="form.by_category_id">
-                     <option value="" disabled selected> kategori </option>
-                     <option v-for="category in foodCategories" :value="category.id">{{ category.name }}</option>
-                 </select>
-              </div>
-
-              <div>
-                <label for=""> finns inte i lager</label>
-                <input class="" type="checkbox" placeholder="title" v-model="form.status"/>
-              </div>
-          </div>
-      </div>
-        <div class="admin__form__btn-container">
-            <button v-if="isEdit" @click.prevent="$emit('closeEdit')"> stäng </button>
-            <button class="form--cta" type="submit"> {{ isEdit ? 'ändra' : 'skapa'}}</button>
+  <form :class="{'admin__form': !isEdit, 'admin__form--edit': isEdit }" @submit.prevent="create">
+    <div class="admin__form-inputs">
+      <div class="form__first-col">
+        <div>
+          <input v-model="form.name" class="input" placeholder="rubrik" />
+          <div> {{ form.errors.name }} </div>
         </div>
-    </form>
+        <div>
+          <textarea v-model="form.desc" class="input input--textarea" placeholder="beskrivning" />
+          <div> {{ form.errors.desc }} </div>
+        </div>
+      </div>
+      <div class="form__second-col">
+        <div>
+          <input v-model="form.price" class="input" placeholder="pris" />
+          <div> {{ form.errors.price }} </div>
+        </div>
+
+        <div>
+          <select v-model="form.by_category_id" class="input">
+            <option value="" disabled selected> kategori </option>
+            <option v-for="category in foodCategories" :value="category.id">{{ category.name }}</option>
+          </select>
+        </div>
+
+        <div>
+          <label for=""> finns inte i lager</label>
+          <input v-model="form.status" class="" type="checkbox" placeholder="title" />
+        </div>
+      </div>
+    </div>
+    <div class="admin__form__btn-container">
+      <button v-if="isEdit" @click.prevent="$emit('closeEdit')"> stäng </button>
+      <button class="form--cta" type="submit"> {{ isEdit ? 'ändra' : 'skapa' }}</button>
+    </div>
+  </form>
 </template>
 
 <script setup>
-    import { useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3'
 
-    const {isEdit, item} = defineProps({
-        foodCategories: Array,   
-        item: Object,
-        isEdit: {
-            type: Boolean,
-            default: false,
-        },
-    })
+const props = defineProps({
+  foodCategories: Array,   
+  item: Object,
+  isEdit: {
+    type: Boolean,
+    default: false,
+  },
+})
 
-    defineEmits([ 'closeEdit' ]);
+defineEmits([ 'closeEdit' ])
 
-    const form = useForm({
-        name: isEdit ? item.name : '',
-        desc: isEdit ? item.desc : '',
-        status: isEdit ? (item.status ? true : false) : '0',
-        price: isEdit ? item.price : '',
-        by_category_id: isEdit ? item.by_category_id : '',
-    });
+const form = useForm({
+  name: props.isEdit ? props.item.name : '',
+  desc: props.isEdit ? props.item.desc : '',
+  status: props.isEdit ? (props.item.status ? true : false) : '0',
+  price: props.isEdit ? props.item.price : '',
+  by_category_id: props.isEdit ? props.item.by_category_id : '',
+})
 
-  const create = () => {
-    isEdit
-        ? form.put(`/admin/food-items/${item.id}`)
-        : form.post('/admin/food-items');
-  };
+const create = () => {
+  props.isEdit
+    ? form.put(`/admin/food-items/${props.item.id}`)
+    : form.post('/admin/food-items')
+}
 
 </script>
 

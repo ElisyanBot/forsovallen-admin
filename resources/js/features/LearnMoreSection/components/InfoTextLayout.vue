@@ -1,6 +1,6 @@
 <template>
   <div class="info-text__layout">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 

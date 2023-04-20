@@ -1,31 +1,31 @@
 <template>
-    <div class="admin__list-item__body">
-        <div class="list-item__img">
-            <slot name="image" />
-        </div>
-      <div class="list-items">
-          <slot />
-      </div>
-      <div class="admin__list-item__btn-container">
-          <button @click="showForm = true"> edit </button>
-          <Link :href="deletePath" method="DELETE" as="button"> delete </Link>
-      </div>
+  <div class="admin__list-item__body">
+    <div class="list-item__img">
+      <slot name="image" />
     </div>
-    <div class="admin__list-item__edit-form admin__form" v-if="showForm">
-        <slot name="edit" />
+    <div class="list-items">
+      <slot />
     </div>
+    <div class="admin__list-item__btn-container">
+      <button @click="showForm = true"> edit </button>
+      <Link :href="deletePath" method="DELETE" as="button"> delete </Link>
+    </div>
+  </div>
+  <div v-if="showForm" class="admin__list-item__edit-form admin__form">
+    <slot name="edit" />
+  </div>
 </template>
 
 <script setup>
-  import { Link } from '@inertiajs/vue3';
-  import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
 
-  defineProps({
-    itemId: Number,
-    deletePath: String,
-  })
+defineProps({
+  itemId: Number,
+  deletePath: String,
+})
 
-  const showForm = ref(false);
+const showForm = ref(false)
 </script>
 
 <style lang="scss">

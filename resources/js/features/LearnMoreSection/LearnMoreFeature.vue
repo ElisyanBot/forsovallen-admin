@@ -50,31 +50,31 @@
 </template>
 
 <script setup>
-  import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
-  import InfoIcon from './components/InfoIcon.vue'
-  import InfoText from './components/InfoText.vue'
-  import InfoTextLayout from './components/InfoTextLayout.vue'
-  import infoTextObj from './assets/_infoTextObj.js'
-  import { ref, watchEffect } from 'vue'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import InfoIcon from './components/InfoIcon.vue'
+import InfoText from './components/InfoText.vue'
+import InfoTextLayout from './components/InfoTextLayout.vue'
+import infoTextObj from './assets/_infoTextObj.js'
+import { ref, watchEffect } from 'vue'
 
-  const currentInfoObj = ref('cafe')
-  const mockData = ref(infoTextObj)
-  const arrowPlacement = ref(null)
+const currentInfoObj = ref('cafe')
+const mockData = ref(infoTextObj)
+const arrowPlacement = ref(null)
 
-  watchEffect(() => {
-    if (currentInfoObj.value === 'cafe') {
-      arrowPlacement.value = 8.1
-    }
-    if (currentInfoObj.value === 'vandrarhem') {
-      arrowPlacement.value = 34
-    }
-    if (currentInfoObj.value === 'event') {
-      arrowPlacement.value = 59.8
-    }
-    if (currentInfoObj.value === 'gudstjänster') {
-      arrowPlacement.value = 87.1
-    }
-  })
+watchEffect(() => {
+  if (currentInfoObj.value === 'cafe') {
+    arrowPlacement.value = 8.1
+  }
+  if (currentInfoObj.value === 'vandrarhem') {
+    arrowPlacement.value = 34
+  }
+  if (currentInfoObj.value === 'event') {
+    arrowPlacement.value = 59.8
+  }
+  if (currentInfoObj.value === 'gudstjänster') {
+    arrowPlacement.value = 87.1
+  }
+})
 </script>
 
 <style lang="scss">

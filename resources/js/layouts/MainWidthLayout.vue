@@ -1,6 +1,6 @@
 <template>
   <section class="layout__main-width">
-    <slot></slot>
+    <slot />
   </section>
 </template>
 

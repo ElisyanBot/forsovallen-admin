@@ -1,113 +1,116 @@
 <template>
-    <MainWidthLayout>
-          <h3 class="admin__header--divider"> skapa </h3>
+  <MainWidthLayout>
+    <h3 class="admin__header--divider"> skapa </h3>
 
-          <div class="admin__form-tabs">
-            <button
-                :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItem'}"
-                @click="showFoodItemForm"
-            >
-                meny
-            </button>
-              <button
-                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'events'}"
-                  @click="currentForm = 'events'"
-              >
-                  händelser
-              </button>
-              <button
-                  :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'rooms'}"
-                  @click="currentForm = 'rooms'"
-              >
-                  vandrarhem
-              </button>
-          </div>
+    <div class="admin__form-tabs">
+      <button
+        :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItem'}"
+        @click="showFoodItemForm"
+      >
+        meny
+      </button>
+      <button
+        :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'events'}"
+        @click="currentForm = 'events'"
+      >
+        händelser
+      </button>
+      <button
+        :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'rooms'}"
+        @click="currentForm = 'rooms'"
+      >
+        vandrarhem
+      </button>
+    </div>
 
-          <section>
-            <CreateFoodItemForm v-if="currentForm === 'foodItem'"  :food-categories="foodCategories"/>
-            <CreateEventForm v-else-if="currentForm === 'events'" />
-            <CreateRoomForm v-else-if="currentForm === 'rooms'" />
-          </section>
+    <section>
+      <CreateFoodItemForm v-if="currentForm === 'foodItem'" :food-categories="foodCategories" />
+      <CreateEventForm v-else-if="currentForm === 'events'" />
+      <CreateRoomForm v-else-if="currentForm === 'rooms'" />
+    </section>
 
-          <h3 class="admin__header--divider"> Skapade </h3>
+    <h3 class="admin__header--divider"> Skapade </h3>
 
-          <section class="admin__list-items">
-            <div v-if="currentForm === 'foodItem'" v-for="item in foodItems">
-              <ListItemLayout
-                :delete-path="`admin/food-items/${item.id}`"
-                :item-id="item.id"
-              >
-                  <p>{{ item.id }}</p>
-                  <p>{{ item.name }}</p>
-                  <p>{{ item.desc }}</p>
-                  <p>{{ item.status }}</p>
-                  <p>{{ item.price }}</p>
+    <section v-if="currentForm === 'foodItem'" class="admin__list-items">
+      <div v-for="item in foodItems">
+        <ListItemLayout
+          :delete-path="`admin/food-items/${item.id}`"
+          :item-id="item.id"
+        >
+          <p>{{ item.id }}</p>
+          <p>{{ item.name }}</p>
+          <p>{{ item.desc }}</p>
+          <p>{{ item.status }}</p>
+          <p>{{ item.price }}</p>
 
-                <template v-slot:edit>
-                  <CreateFoodItemForm :isEdit="true" :food-categories="foodCategories" :item="item"/>
-                </template>
-              </ListItemLayout>
-            </div>
+          <template #edit>
+            <CreateFoodItemForm :is-edit="true" :food-categories="foodCategories" :item="item" />
+          </template>
+        </ListItemLayout>
+      </div>
+    </section>
 
-            <div v-if="currentForm === 'events'" v-for="item in events">
-              <ListItemLayout
-                :delete-path="`admin/events/${item.id}`"
-                :item-id="item.id"
-              >
-                  <p>{{ item.id }}</p>
-                  <p>{{ item.title }}</p>
-                  <p>{{ item.desc }}</p>
-                  <p>{{ item.date }}</p>
-                  <p>{{ item.location }}</p>
-                  <p>{{ item.time }}</p>
+    <section v-if="currentForm === 'events'" class="admin__list-items">
+      <div v-for="item in events">
+        <ListItemLayout
+          :delete-path="`admin/events/${item.id}`"
+          :item-id="item.id"
+        >
+          <p>{{ item.id }}</p>
+          <p>{{ item.title }}</p>
+          <p>{{ item.desc }}</p>
+          <p>{{ item.date }}</p>
+          <p>{{ item.location }}</p>
+          <p>{{ item.time }}</p>
 
-                <template v-slot:edit>
-                  <CreateEventForm :item="item" :isEdit="true"/>
-                </template>
-              </ListItemLayout>
-            </div>
+          <template #edit>
+            <CreateEventForm :item="item" :is-edit="true" />
+          </template>
+        </ListItemLayout>
+      </div>
+    </section>
              
-            <div v-if="currentForm === 'rooms'" v-for="item in rooms">
-              <ListItemLayout
-                :delete-path="`admin/rooms/${item.id}`"
-                :item-id="item.id"
-              >
-                  <p>{{ item.id }}</p>
-                  <p>{{ item.title }}</p>
-                  <p>{{ item.desc }}</p>
-                  <p>{{ item.status }}</p>
+    <section v-if="currentForm === 'rooms'" class="admin__list-items">
+      <div v-for="item in rooms">
+        <ListItemLayout
+          :delete-path="`admin/rooms/${item.id}`"
+          :item-id="item.id"
+        >
+          <p>{{ item.id }}</p>
+          <p>{{ item.title }}</p>
+          <p>{{ item.desc }}</p>
+          <p>{{ item.status }}</p>
 
-                <template v-slot:edit>
-                  <CreateRoomForm :item="item" :isEdit="true"/>
-                </template>
-              </ListItemLayout>
-            </div>
-
-          </section>
-    </MainWidthLayout>
+          <template #edit>
+            <CreateRoomForm :item="item" :is-edit="true" />
+          </template>
+        </ListItemLayout>
+      </div>
+    </section>
+  </MainWidthLayout>
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  import CreateFoodItemForm from './components/CreateFoodItemForm.vue';
-  import CreateEventForm from './components/CreateEventForm.vue';
-  import CreateRoomForm from './components/CreateRoomForm.vue';
-  import ListItemLayout from './layout/ListItemLayout.vue';
-  import MainWidthLayout from "../../layouts/MainWidthLayout.vue";
+import { ref } from 'vue'
+import CreateFoodItemForm from './components/CreateFoodItemForm.vue'
+import CreateEventForm from './components/CreateEventForm.vue'
+import CreateRoomForm from './components/CreateRoomForm.vue'
+import ListItemLayout from './layout/ListItemLayout.vue'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 
-  const currentForm = ref('foodItem');
+const currentForm = ref('foodItem')
 
-  defineProps({
-      foodCategories: Array,
-      foodItems: Array,
-      events: Array,
-      rooms: Array,
-  });
+defineProps({
+  foodCategories: Array,
+  foodItems: Array,
+  events: Array,
+  rooms: Array,
+})
 
 
-  const showFoodItemForm = () => {
-    currentForm.value = 'foodItem'
-  }
+const showFoodItemForm = () => {
+  currentForm.value = 'foodItem'
+}
 </script>
 
 <style scoped lang="scss">

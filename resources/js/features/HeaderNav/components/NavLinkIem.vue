@@ -6,18 +6,18 @@
 </template>
 
 <script setup>
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-  defineProps({
-    text: {
-      type: String,
-      required: true
-    },
-    aLink: {
-      type: String,
-      required: true
-    }
-  })
+defineProps({
+  text: {
+    type: String,
+    required: true,
+  },
+  aLink: {
+    type: String,
+    required: true,
+  },
+})
 </script>
 
 <style lang="scss">

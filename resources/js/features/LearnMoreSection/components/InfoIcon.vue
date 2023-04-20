@@ -1,5 +1,5 @@
 <template>
-  <div @click="handleClick" class="info-icon">
+  <div class="info-icon" @click="handleClick">
     <div class="info-icon__background">
       <img :src="bgSrc" alt="info-icon icon background" />
       <div>
@@ -15,29 +15,29 @@
 </template>
 
 <script setup>
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  import { defineProps, defineEmits } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { defineProps, defineEmits } from 'vue'
 
-  defineProps({
-    bgSrc: {
-      type: String,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    iconClass: {
-      type: String,
-      required: false
-    }
-  })
+defineProps({
+  bgSrc: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  iconClass: {
+    type: String,
+    required: false,
+  },
+})
 
-  const emit = defineEmits(['handleClick'])
+const emit = defineEmits(['handleClick'])
 
-  const handleClick = () => {
-    emit('handleClick')
-  }
+const handleClick = () => {
+  emit('handleClick')
+}
 </script>
 
 <style lang="scss">

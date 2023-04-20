@@ -6,36 +6,33 @@
   </header>
   <main class="admin-main">
     <MainWidthLayout>
-      <div class="admin__header" v-if="user">
+      <div v-if="user" class="admin__header">
         <h2> admin | {{ user.name }} </h2>
         <Link href="/admin/logout" method="DELETE" as="button"> logga ut </Link>
       </div>
       
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid. 
       Deserunt provident commodi cupiditate architecto ratione libero quos numquam aliquam repudiandae.
-
     </MainWidthLayout>
-    <ControlPanel :foodCategories="foodCategories" :food-items="foodItems" :events="events" :rooms="rooms"/>
+    <ControlPanel :food-categories="foodCategories" :food-items="foodItems" :events="events" :rooms="rooms" />
   </main>
-  <footer>
-
-  </footer>
+  <footer />
 </template>
 
 <script setup>
-  import ControlPanel from '../../features/ControllPanel/ControlPanel.vue';
-  import { usePage, Link } from '@inertiajs/vue3';
-  import { computed } from 'vue';
-import MainWidthLayout from '../../layouts/MainWidthLayout.vue';
+import ControlPanel from '../../features/ControllPanel/ControlPanel.vue'
+import { usePage, Link } from '@inertiajs/vue3'
+import { computed } from 'vue'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 
-  defineProps({
-      foodCategories: Array,
-      foodItems: Array,
-      rooms: Array,
-      events: Array,
-  })
+defineProps({
+  foodCategories: Array,
+  foodItems: Array,
+  rooms: Array,
+  events: Array,
+})
 
-  const user = computed(() => usePage().props.user );
+const user = computed(() => usePage().props.user )
 
 </script>
 

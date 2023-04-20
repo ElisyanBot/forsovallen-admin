@@ -1,7 +1,7 @@
 <template>
   <div
-    @click="handleClick"
     :class="{ 'food-table__category': true, 'food-table__category--selected': selected }"
+    @click="handleClick"
   >
     <FontAwesomeIcon :icon="['fas', fontAwesomeClass]" />
     <h4>{{ text }}</h4>
@@ -9,28 +9,28 @@
 </template>
 
 <script setup>
-  import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
-  defineProps({
-    text: {
-      type: String,
-      required: true
-    },
-    fontAwesomeClass: {
-      type: String,
-      required: false
-    },
-    selected: {
-      type: Boolean,
-      default: false
-    }
-  })
+defineProps({
+  text: {
+    type: String,
+    required: true,
+  },
+  fontAwesomeClass: {
+    type: String,
+    required: false,
+  },
+  selected: {
+    type: Boolean,
+    default: false,
+  },
+})
 
-  const emit = defineEmits(['handleClick'])
+const emit = defineEmits(['handleClick'])
 
-  const handleClick = () => {
-    emit('handleClick')
-  }
+const handleClick = () => {
+  emit('handleClick')
+}
 </script>
 
 <style lang="scss">

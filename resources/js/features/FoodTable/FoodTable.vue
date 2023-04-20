@@ -40,16 +40,16 @@
           'food-table__items--expanded': expandedSection
         }"
       >
-          <div class="food-table__divider" :style="{ 'grid-row-end': 'span ' + `${rowsNr}` }">
-              <!-- divider -->
-          </div>
-          <FoodItem
-              v-for="(item, index) in foodItems"
-              :key="index"
-              :header-txt="item.name"
-              :text="item.desc"
-              :out-of-stock="item.status"
-          />
+        <div class="food-table__divider" :style="{ 'grid-row-end': 'span ' + `${rowsNr}` }">
+          <!-- divider -->
+        </div>
+        <FoodItem
+          v-for="(item, index) in foodItems"
+          :key="index"
+          :header-txt="item.name"
+          :text="item.desc"
+          :out-of-stock="item.status"
+        />
       </div>
     </MainWidthLayout>
     <div class="food-table__btn-container">
@@ -61,35 +61,34 @@
 </template>
 
 <script setup>
-  import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
-  import TableCategory from './components/TableCategory.vue'
-  import FoodItem from './components/FoodItem.vue'
-  import {coldFood, desserts, drinks } from './assets/_menyItems.js'
-  import {computed, ref, watchEffect} from 'vue'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import TableCategory from './components/TableCategory.vue'
+import FoodItem from './components/FoodItem.vue'
+import {computed, ref, watchEffect} from 'vue'
 
-  const rowsNr = ref(1)
-  const expandedSection = ref(false)
-  const btnTxt = ref('visa mer')
-  const selectedCategory = ref(1)
-  const foodItems = computed(() => props.foodItems.filter(i => i.by_category_id === selectedCategory.value ));
+const rowsNr = ref(1)
+const expandedSection = ref(false)
+const btnTxt = ref('visa mer')
+const selectedCategory = ref(1)
+const foodItems = computed(() => props.foodItems.filter(i => i.by_category_id === selectedCategory.value ))
 
-  const props = defineProps({
-    foodItems: Array,
-  });
+const props = defineProps({
+  foodItems: Array,
+})
 
-  watchEffect(() => {
-    rowsNr.value = Math.ceil(foodItems.value.length / 2)
-  })
+watchEffect(() => {
+  rowsNr.value = Math.ceil(foodItems.value.length / 2)
+})
 
-  const handleClick = () => {
-    expandedSection.value = !expandedSection.value
+const handleClick = () => {
+  expandedSection.value = !expandedSection.value
 
-    if (expandedSection.value) {
-      btnTxt.value = 'visa mindre'
-    } else {
-      btnTxt.value = 'visa mer'
-    }
+  if (expandedSection.value) {
+    btnTxt.value = 'visa mindre'
+  } else {
+    btnTxt.value = 'visa mer'
   }
+}
 </script>
 
 <style lang="scss">

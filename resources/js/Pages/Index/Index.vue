@@ -5,18 +5,18 @@
     <LearnMoreFeature />
     <FoodTable :food-items="foodItems" />
   </main>
-  <footer></footer>
+  <footer />
 </template>
 
 <script setup>
-  import LearnMoreFeature from '../../features/LearnMoreSection/LearnMoreFeature.vue'
-  import FoodTable from '../../features/FoodTable/FoodTable.vue'
-  import AboutUs from '../../components/AboutUs.vue'
-  import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
+import LearnMoreFeature from '../../features/LearnMoreSection/LearnMoreFeature.vue'
+import FoodTable from '../../features/FoodTable/FoodTable.vue'
+import AboutUs from '../../components/AboutUs.vue'
+import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
 
-  defineProps({
-    foodItems: Array,
-  })
+defineProps({
+  foodItems: Array,
+})
 
 </script>
 

@@ -1,36 +1,36 @@
 <template>
   <MainWidthLayout>
-  <form class="login-form" @submit.prevent="login">
-        <div class="login-form__input-container">
-            <label for="email"></label>
-            <input type="email" id="email" placeholder="email" v-model="form.email"/>
-        </div >
-        <div class="login-form__input-container">
-            <label for="password"></label>
-            <input type="password" id="password" placeholder="email" v-model="form.password"/>
-        </div>
-        <div class="login-form__input-container checkbox-container">
-          <input type="checkbox" id="stayLoggedIn" v-model="form.stayLoggedIn"/>
-          <label for="stayLoggedIn">Håll mig inloggad på den här enheten</label>
-        </div>
-        <div class="login-form__input-container">
-            <button type="submit"> login </button>
-        </div>
+    <form class="login-form" @submit.prevent="login">
+      <div class="login-form__input-container">
+        <label for="email" />
+        <input id="email" v-model="form.email" type="email" placeholder="email" />
+      </div>
+      <div class="login-form__input-container">
+        <label for="password" />
+        <input id="password" v-model="form.password" type="password" placeholder="email" />
+      </div>
+      <div class="login-form__input-container checkbox-container">
+        <input id="stayLoggedIn" v-model="form.stayLoggedIn" type="checkbox" />
+        <label for="stayLoggedIn">Håll mig inloggad på den här enheten</label>
+      </div>
+      <div class="login-form__input-container">
+        <button type="submit"> login </button>
+      </div>
     </form>
   </MainWidthLayout>
 </template>
 
 <script setup>
-  import { useForm } from '@inertiajs/vue3';
-import MainWidthLayout from '../../layouts/MainWidthLayout.vue';
+import { useForm } from '@inertiajs/vue3'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
   
-  const form = useForm({
-    email: '',
-    password: '',
-    stayLoggedIn: false,
-  });
+const form = useForm({
+  email: '',
+  password: '',
+  stayLoggedIn: false,
+})
 
-  const login = () => form.post('/admin/login');
+const login = () => form.post('/admin/login')
 </script>
 
 <style scoped lang="scss">

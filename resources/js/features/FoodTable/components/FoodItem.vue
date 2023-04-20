@@ -18,26 +18,26 @@
 </template>
 
 <script setup>
-  import { defineProps } from 'vue'
+import { defineProps } from 'vue'
 
-  defineProps({
-    imgSrc: {
-      type: String,
-    },
-    headerTxt: {
-      type: String,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    outOfStock: {
-      type: Boolean,
-      required: false,
-      default: false
-    }
-  })
+defineProps({
+  imgSrc: {
+    type: String,
+  },
+  headerTxt: {
+    type: String,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  outOfStock: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+})
 </script>
 
 <style lang="scss">

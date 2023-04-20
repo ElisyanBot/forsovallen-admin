@@ -24,14 +24,14 @@
           </div>
         </div>
         <!-- shape -->
-        <div class="about-us__background-shape"></div>
+        <div class="about-us__background-shape" />
       </div>
     </section>
   </MainWidthLayout>
 </template>
 
 <script setup>
-  import MainWidthLayout from '../layouts/MainWidthLayout.vue'
+import MainWidthLayout from '../layouts/MainWidthLayout.vue'
 </script>
 
 <style lang="scss">
