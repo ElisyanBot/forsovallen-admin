@@ -1,7 +1,7 @@
 <template>
   <div class="admin__list-item__body">
     <picture class="list-item__img">
-        <img :src="imgSrc" alt="item image" />
+      <img :src="imgSrc" alt="item image" />
     </picture>
     <div class="list-items">
       <slot />
@@ -23,7 +23,7 @@ import { ref } from 'vue'
 defineProps({
   itemId: Number,
   deletePath: String,
-    imgSrc: String
+  imgSrc: String,
 })
 
 const showForm = ref(false)
@@ -31,6 +31,7 @@ const showForm = ref(false)
 
 <style scoped lang="scss">
     .admin__list-item__body {
+        overflow: hidden;
         position: relative;
         z-index: 2;
         display: flex;

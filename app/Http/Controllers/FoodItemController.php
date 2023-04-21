@@ -30,6 +30,12 @@ class FoodItemController extends Controller
         ]));
 
         if($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,svg'
+            ], [
+                'image.image' => 'Filen måste vara en bild',
+                'image.mimes' => 'Filen måste vara en bild',
+            ]);
             $path = $request->file('image')->store('FoodItemImg','public');
             $test->image()->save(new FoodItemImage([
                 'filename' => $path

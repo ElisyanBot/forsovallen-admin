@@ -17,10 +17,10 @@ defineProps({
     type: String,
     required: true,
   },
-    target: {
-        type: String,
-        required: false,
-    }
+  target: {
+    type: String,
+    required: false,
+  },
 })
 </script>
 

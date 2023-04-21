@@ -7,7 +7,7 @@
       </div>
       <div class="login-form__input-container">
         <label for="password" />
-        <input id="password" v-model="form.password" type="password" placeholder="email" />
+        <input id="password" v-model="form.password" type="password" placeholder="password" />
       </div>
       <div class="login-form__input-container checkbox-container">
         <input id="stayLoggedIn" v-model="form.stayLoggedIn" type="checkbox" />
@@ -23,7 +23,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
-  
+
 const form = useForm({
   email: '',
   password: '',
@@ -48,8 +48,8 @@ const login = () => form.post('/admin/login')
     .login-form__input-container{
       margin: 2rem 0;
 
-      input[type="email"], 
-      input[type="password"], 
+      input[type="email"],
+      input[type="password"],
       button {
         width: 50rem;
         height: 6rem;
@@ -74,12 +74,12 @@ const login = () => form.post('/admin/login')
         text-transform: uppercase;
         border: none;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-        &:hover { 
+        &:hover {
           cursor: pointer;
         }
       }
     }
-    
+
     .checkbox-container {
       display: flex;
       align-items: center;
@@ -89,5 +89,5 @@ const login = () => form.post('/admin/login')
       font-size: 1.8rem;
     }
   }
-  
+
 </style>
