@@ -22,7 +22,7 @@ defineProps({
 
 <style lang="scss">
   footer {
-    background-color: #f37563;
+    background-color: #c64533;
     width: 100%;
     height: 30rem;
   }

@@ -4,7 +4,7 @@
 
     <div class="admin__form-tabs">
       <button
-        :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItem'}"
+        :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItems'}"
         @click="showFoodItemForm"
       >
         meny
@@ -24,15 +24,15 @@
     </div>
 
     <section>
-      <CreateFoodItemForm v-if="currentForm === 'foodItem'" :food-categories="foodCategories" />
+      <CreateFoodItemForm v-if="currentForm === 'foodItems'" :food-categories="foodCategories" />
       <CreateEventForm v-else-if="currentForm === 'events'" />
       <CreateRoomForm v-else-if="currentForm === 'rooms'" />
     </section>
 
     <h3 class="admin__header--divider"> Skapade </h3>
 
-    <section v-if="currentForm === 'foodItem'" class="admin__list-items">
-      <div v-for="item in foodItems">
+    <section v-if="currentForm === 'foodItems'" class="admin__list-items">
+      <div v-for="item in pagination(foodItems, startIndex, endIndex)">
         <ListItemLayout
           :delete-path="`admin/food-items/${item.id}`"
           :item-id="item.id"
@@ -52,7 +52,7 @@
     </section>
 
     <section v-if="currentForm === 'events'" class="admin__list-items">
-      <div v-for="item in events">
+      <div v-for="item in pagination(events, startIndex, endIndex)">
         <ListItemLayout
           :delete-path="`admin/events/${item.id}`"
           :item-id="item.id"
@@ -72,7 +72,7 @@
     </section>
 
     <section v-if="currentForm === 'rooms'" class="admin__list-items">
-      <div v-for="item in rooms">
+      <div v-for="item in pagination(rooms, startIndex, endIndex)">
         <ListItemLayout
           :delete-path="`admin/rooms/${item.id}`"
           :item-id="item.id"
@@ -88,29 +88,65 @@
         </ListItemLayout>
       </div>
     </section>
+    <div class="pagination" v-if="pages > 1">
+        <span
+            :class="{'pagination__dot': true, 'pagination__dot--selected': index === selectedPage }"
+            v-for="(num, index) in pages"
+            @click="() => {
+                changePage(index);
+                selectedPage = index;
+            }"
+        >
+        </span>
+    </div>
   </MainWidthLayout>
+
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {computed, ref} from 'vue'
 import CreateFoodItemForm from './components/CreateFoodItemForm.vue'
 import CreateEventForm from './components/CreateEventForm.vue'
 import CreateRoomForm from './components/CreateRoomForm.vue'
 import ListItemLayout from './layout/ListItemLayout.vue'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 
-const currentForm = ref('foodItem')
-
-defineProps({
+const props = defineProps({
   foodCategories: Array,
   foodItems: Array,
   events: Array,
   rooms: Array,
 })
 
+const currentForm = ref('foodItems');
+const itemsPerPage = ref(5);
+const startIndex = ref(0);
+const endIndex = ref(5);
+const selectedPage = ref(0);
+
+const changePage = (index) => {
+    if(index === 0 ) {
+        startIndex.value = 0;
+        endIndex.value = itemsPerPage.value;
+        return;
+    }
+
+    startIndex.value = index * itemsPerPage.value;
+    endIndex.value = startIndex.value + itemsPerPage.value;
+}
+
+const pages = computed( () => {
+    return Math.ceil(props[currentForm.value].length/itemsPerPage.value);
+})
+
+const pagination = (array, start, end) => {
+    if(start < 0 || start > array.length || end < start) return;
+
+    return array.slice(start, end);
+}
 
 const showFoodItemForm = () => {
-  currentForm.value = 'foodItem'
+  currentForm.value = 'foodItems'
 }
 </script>
 
@@ -150,6 +186,32 @@ const showFoodItemForm = () => {
             z-index: 2;
             background: #ffffff;
             color: black;
+        }
+    }
+
+    .pagination {
+        margin: 2rem 0 2rem auto;
+        width: 50%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+
+        .pagination__dot {
+            content: '';
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid black;
+            border-radius: 50%;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .pagination__dot--selected {
+            background: #c64533;
+            border: 1px solid #c64533
         }
     }
 </style>

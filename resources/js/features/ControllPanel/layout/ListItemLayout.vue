@@ -1,6 +1,6 @@
 <template>
   <div class="admin__list-item__body">
-    <picture class="list-item__img">
+    <picture v-if="imgSrc" class="list-item__img">
       <img :src="imgSrc" alt="item image" />
     </picture>
     <div class="list-items">
