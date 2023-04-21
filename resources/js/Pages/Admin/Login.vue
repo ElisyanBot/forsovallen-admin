@@ -1,5 +1,6 @@
 <template>
   <MainWidthLayout>
+      <h3 class="admin-login__header"> admin | Login </h3>
     <form class="login-form" @submit.prevent="login">
       <div class="login-form__input-container">
         <label for="email" />
@@ -34,6 +35,14 @@ const login = () => form.post('/admin/login')
 </script>
 
 <style scoped lang="scss">
+
+.admin-login__header {
+    font-size: 3.2rem;
+    margin: 5rem 0;
+    color: #c64533;
+    text-transform: uppercase;
+    margin-left: 15rem;
+}
   .login-form {
     display: flex;
     justify-content: center;
