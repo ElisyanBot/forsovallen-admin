@@ -5,19 +5,28 @@
     <div class="admin__form-tabs">
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItems'}"
-        @click="showFoodItemForm"
+        @click="() => {
+            currentForm = 'foodItems';
+            resetPagination();
+        }"
       >
         meny
       </button>
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'events'}"
-        @click="currentForm = 'events'"
+        @click="() => {
+            currentForm = 'events';
+            resetPagination();
+        }"
       >
         händelser
       </button>
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'rooms'}"
-        @click="currentForm = 'rooms'"
+        @click="() => {
+            currentForm = 'rooms';
+            resetPagination();
+        }"
       >
         vandrarhem
       </button>
@@ -38,11 +47,11 @@
           :item-id="item.id"
           :img-src="item.image.src"
         >
-          <p>{{ item.id }}</p>
-          <p>{{ item.name }}</p>
-          <p>{{ item.desc }}</p>
-          <p>{{ item.status }}</p>
-          <p>{{ item.price }}</p>
+          <p class="list-item__id">{{ item.id }}</p>
+          <p class="list-item__title">{{ item.name }}</p>
+          <p class="list-item__desc">{{ item.desc }}</p>
+          <p class="list-item__status">{{ item.status ? 'slutsåld' : 'i lager' }}</p>
+          <p class="list-item__price">{{ item.price }}</p>
 
           <template #edit>
             <CreateFoodItemForm :is-edit="true" :food-categories="foodCategories" :item="item" />
@@ -57,12 +66,12 @@
           :delete-path="`admin/events/${item.id}`"
           :item-id="item.id"
         >
-          <p>{{ item.id }}</p>
-          <p>{{ item.title }}</p>
-          <p>{{ item.desc }}</p>
-          <p>{{ item.date }}</p>
-          <p>{{ item.location }}</p>
-          <p>{{ item.time }}</p>
+          <p class="list-item__id">{{ item.id }}</p>
+          <p class="list-item__title">{{ item.title }}</p>
+          <p class="list-item__desc">{{ item.desc }}</p>
+          <p class="list-item__date">{{ item.date }}</p>
+          <p class="list-item__location">{{ item.location }}</p>
+          <p class="list-item__time">{{ item.time }}</p>
 
           <template #edit>
             <CreateEventForm :item="item" :is-edit="true" />
@@ -77,10 +86,10 @@
           :delete-path="`admin/rooms/${item.id}`"
           :item-id="item.id"
         >
-          <p>{{ item.id }}</p>
-          <p>{{ item.title }}</p>
-          <p>{{ item.desc }}</p>
-          <p>{{ item.status }}</p>
+          <p class="list-item__id">{{ item.id }}</p>
+          <p class="list-item__title">{{ item.title }}</p>
+          <p class="list-item__desc">{{ item.desc }}</p>
+          <p class="list-item__status">{{ item.status }}</p>
 
           <template #edit>
             <CreateRoomForm :item="item" :is-edit="true" />
@@ -104,7 +113,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue'
+import {computed, ref, watchEffect} from 'vue'
 import CreateFoodItemForm from './components/CreateFoodItemForm.vue'
 import CreateEventForm from './components/CreateEventForm.vue'
 import CreateRoomForm from './components/CreateRoomForm.vue'
@@ -135,6 +144,12 @@ const changePage = (index) => {
     endIndex.value = startIndex.value + itemsPerPage.value;
 }
 
+const resetPagination = () => {
+    startIndex.value = 0;
+    endIndex.value = itemsPerPage.value;
+    selectedPage.value = 0;
+}
+
 const pages = computed( () => {
     return Math.ceil(props[currentForm.value].length/itemsPerPage.value);
 })
@@ -145,9 +160,6 @@ const pagination = (array, start, end) => {
     return array.slice(start, end);
 }
 
-const showFoodItemForm = () => {
-  currentForm.value = 'foodItems'
-}
 </script>
 
 <style scoped lang="scss">

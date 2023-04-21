@@ -1,7 +1,7 @@
 <template>
   <div class="admin__list-item__body">
-    <picture v-if="imgSrc" class="list-item__img">
-      <img :src="imgSrc" alt="item image" />
+    <picture class="list-item__img">
+      <img v-if="imgSrc" :src="imgSrc" alt="item image" />
     </picture>
     <div class="list-items">
       <slot />
@@ -29,7 +29,7 @@ defineProps({
 const showForm = ref(false)
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     .admin__list-item__body {
         overflow: hidden;
         position: relative;
@@ -40,7 +40,7 @@ const showForm = ref(false)
         background: #ffffff;
         width: 100%;
         max-width: 130rem;
-        height: 8.6rem;
+        height: 10rem;
         padding: 0rem 1rem 0 0;
         filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
 
@@ -49,7 +49,9 @@ const showForm = ref(false)
             z-index: 2;
             display: flex;
             flex-direction: row;
-            gap: 5rem;
+            align-items: center;
+            gap: 3rem;
+            width: 110rem;
         }
        .admin__list-item__btn-container {
            display: flex;
@@ -67,6 +69,40 @@ const showForm = ref(false)
                 height: 100%;
                 object-fit: cover;
             }
+        }
+
+        .list-item__id {
+            width: 100%;
+            max-width: 10rem;
+            text-overflow: ellipsis;
+        }
+
+        .list-item__title,
+        .list-item__location,
+        .list-item__date,
+        .list-item__status {
+            width: 100%;
+            max-width: 15rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: -webkit-box !important;
+            overflow: hidden;
+        }
+
+        .list-item__desc {
+            overflow: hidden;
+            width: 100%;
+            max-width: 40rem;
+            text-overflow:ellipsis;
+            // Addition lines for 2 line or multiline ellipsis
+            display: -webkit-box !important;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            white-space: normal;
+
+            margin: auto 0;
+            display: flex;
+            align-items: center;
         }
     }
 
