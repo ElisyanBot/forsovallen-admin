@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoomImage;
 use Illuminate\Http\Request;
 use App\Models\Room;
 
@@ -20,11 +21,24 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        Room::create($request->validate([
+        $room = Room::create($request->validate([
             'title' => 'required|string',
             'desc' => 'required|string',
             'beds' => 'required|int',
         ]));
+
+        if($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,svg'
+            ], [
+                'image.image' => 'Filen måste vara en bild',
+                'image.mimes' => 'Filen måste vara av typen jpeg, png, jpg eller svg',
+            ]);
+            $path = $request->file('image')->store('RoomImages','public');
+            $room->image()->save(new RoomImage([
+                'filename' => $path
+            ]));
+        }
     }
 
     /**

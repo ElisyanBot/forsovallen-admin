@@ -14,7 +14,7 @@ import UpperDivider from './components/UpperDivider.vue'
 import DisplayRooms from './components/RoomCards/DisplayRooms.vue'
 
 defineProps({
-    rooms: Array
+  rooms: Array,
 })
 </script>
 

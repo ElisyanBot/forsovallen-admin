@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Room extends Model
 {
@@ -14,4 +15,9 @@ class Room extends Model
         'desc',
         'beds',
     ];
+
+    public function image() : hasOne
+    {
+        return $this->hasOne(\App\Models\RoomImage::class);
+    }
 }

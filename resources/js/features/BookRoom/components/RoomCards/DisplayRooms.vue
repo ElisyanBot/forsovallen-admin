@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-    <RoomCards :rooms="rooms"/>
+      <RoomCards :rooms="rooms" />
     </div>
   </section>
 </template>
@@ -32,7 +32,7 @@
 <script setup>
 import RoomCards from './RoomCards.vue'
 defineProps({
-    rooms: Array
+  rooms: Array,
 })
 </script>
 

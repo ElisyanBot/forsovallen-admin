@@ -21,7 +21,7 @@ class FoodItemController extends Controller
      */
     public function store(Request $request)
     {
-        $test = FoodItem::create($request->validate([
+        $foodItem = FoodItem::create($request->validate([
             'name' => 'required|string',
             'desc' => 'required|string',
             'status' => 'required|boolean',
@@ -37,7 +37,7 @@ class FoodItemController extends Controller
                 'image.mimes' => 'Filen måste vara en bild',
             ]);
             $path = $request->file('image')->store('FoodItemImg','public');
-            $test->image()->save(new FoodItemImage([
+            $foodItem->image()->save(new FoodItemImage([
                 'filename' => $path
             ]));
         }

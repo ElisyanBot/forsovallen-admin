@@ -1,64 +1,60 @@
 <template>
-   <section class="room-cards">
-       <div class="card-container">
-           <RoomCard v-for="room in pagination(rooms, startIndex, endIndex)" :key="room.id" :room="room"/>
-       </div>
-       <div class="pagination">
-          <span
-              v-for="(num, index) in pages"
-              :class="{'pagination__dot': true, 'pagination__dot--selected': index === selectedPage }"
-              @click="() => {
-                  changePage(index);
-                  selectedPage = index;
-              }"
-          >
-
-          </span>
-       </div>
-   </section>
-
-
+  <section class="room-cards">
+    <div class="card-container">
+      <RoomCard v-for="room in pagination(rooms, startIndex, endIndex)" :key="room.id" :room="room" />
+    </div>
+    <div class="pagination">
+      <span
+        v-for="(num, index) in pages"
+        :class="{'pagination__dot': true, 'pagination__dot--selected': index === selectedPage }"
+        @click="() => {
+          changePage(index);
+          selectedPage = index;
+        }"
+      />
+    </div>
+  </section>
 </template>
 
 <script setup>
-    import RoomCard from "./RoomCard.vue";
-    import {computed, ref} from "vue";
+import RoomCard from './RoomCard.vue'
+import {computed, ref} from 'vue'
 
-    const props = defineProps({
-        rooms: Array,
-    });
+const props = defineProps({
+  rooms: Array,
+})
 
-    const itemsPerPage = ref(3)
-    const startIndex = ref(0)
-    const endIndex = ref(itemsPerPage.value)
-    const selectedPage = ref(0)
+const itemsPerPage = ref(3)
+const startIndex = ref(0)
+const endIndex = ref(itemsPerPage.value)
+const selectedPage = ref(0)
 
-    const changePage = (index) => {
-        if(index === 0 ) {
-            startIndex.value = 0
-            endIndex.value = itemsPerPage.value
-            return
-        }
+const changePage = (index) => {
+  if(index === 0 ) {
+    startIndex.value = 0
+    endIndex.value = itemsPerPage.value
+    return
+  }
 
-        startIndex.value = index * itemsPerPage.value
-        endIndex.value = startIndex.value + itemsPerPage.value
-    }
+  startIndex.value = index * itemsPerPage.value
+  endIndex.value = startIndex.value + itemsPerPage.value
+}
 
-    const resetPagination = () => {
-        startIndex.value = 0
-        endIndex.value = itemsPerPage.value
-        selectedPage.value = 0
-    }
+const resetPagination = () => {
+  startIndex.value = 0
+  endIndex.value = itemsPerPage.value
+  selectedPage.value = 0
+}
 
-    const pages = computed( () => {
-        return Math.ceil(props.rooms.length/itemsPerPage.value)
-    })
+const pages = computed( () => {
+  return Math.ceil(props.rooms.length/itemsPerPage.value)
+})
 
-    const pagination = (array, start, end) => {
-        if(start < 0 || start > array.length || end < start) return
+const pagination = (array, start, end) => {
+  if(start < 0 || start > array.length || end < start) return
 
-        return array.slice(start, end)
-    }
+  return array.slice(start, end)
+}
 
 </script>
 
@@ -73,9 +69,8 @@
 
        .card-container {
            width: 100%;
-           overflow: hidden;
            display: flex;
-           gap: 5rem;
+           gap: 3rem;
        }
    }
    .pagination {

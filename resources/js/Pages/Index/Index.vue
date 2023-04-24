@@ -18,7 +18,7 @@ import BookRoom from '../../features/BookRoom/BookRoom.vue'
 
 defineProps({
   foodItems: Array,
-    rooms: Array
+  rooms: Array,
 })
 
 </script>

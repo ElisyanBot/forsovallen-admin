@@ -1,19 +1,23 @@
 <template>
-    <article class="room-card">
-        <picture>
-            <img v-if="room.image" :src="room.image.src" alt="room image">
-        </picture>
-        <div class="text">
-            <h3> {{ room.title}} </h3>
-            <p> {{ room.beds }} </p>
-        </div>
-    </article>
+  <article class="room-card">
+    <picture>
+      <img v-if="room.image" :src="room.image.src" alt="room image" />
+    </picture>
+    <div class="text">
+      <h3> {{ room.title }} </h3>
+      <p> {{ room.beds }} </p>
+    </div>
+  </article>
 </template>
 
 <script setup>
-    defineProps({
-        room: Object,
-    });
+const props = defineProps({
+  room: Object,
+})
+
+if(props.room.image) {
+  console.log(props.room.image)
+}
 </script>
 
 <style scoped lang="scss">
@@ -27,10 +31,18 @@
         max-width: 40rem;
         background-color: white;
         border-radius: 0.5rem;
+        filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.44));
+
         picture {
             background-color: black;
             width: 100%;
-            height: 100%;
+            height: 37.8rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
        .text{
