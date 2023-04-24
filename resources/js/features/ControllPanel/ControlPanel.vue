@@ -111,7 +111,7 @@
 </template>
 
 <script setup>
-import {computed, ref, watchEffect} from 'vue'
+import {computed, ref } from 'vue'
 import CreateFoodItemForm from './components/CreateFoodItemForm.vue'
 import CreateEventForm from './components/CreateEventForm.vue'
 import CreateRoomForm from './components/CreateRoomForm.vue'

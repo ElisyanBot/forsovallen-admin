@@ -24,8 +24,8 @@
           </div>
         </div>
       </div>
-    </div>
     <RoomCards :rooms="rooms"/>
+    </div>
   </section>
 </template>
 
@@ -38,10 +38,14 @@ defineProps({
 
 <style scoped lang="scss">
     section.book-room__display-rooms {
+        overflow: hidden;
         display: flex;
+        align-items: center;
         background-color: #f2f2f2;
 
         .display-rooms__green-section {
+        position: relative;
+            justify-content: space-between;
             display: flex;
             align-items: flex-end;
             width: 100%;

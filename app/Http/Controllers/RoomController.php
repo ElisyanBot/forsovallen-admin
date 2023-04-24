@@ -23,7 +23,7 @@ class RoomController extends Controller
         Room::create($request->validate([
             'title' => 'required|string',
             'desc' => 'required|string',
-            'status' => 'required|boolean',
+            'beds' => 'required|int',
         ]));
     }
 

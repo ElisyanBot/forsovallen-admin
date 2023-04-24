@@ -4,7 +4,7 @@
     <AboutUs />
     <LearnMoreFeature />
     <FoodTable :food-items="foodItems" />
-    <BookRoom />
+    <BookRoom :rooms="rooms" />
   </main>
   <footer />
 </template>
@@ -18,6 +18,7 @@ import BookRoom from '../../features/BookRoom/BookRoom.vue'
 
 defineProps({
   foodItems: Array,
+    rooms: Array
 })
 
 </script>

@@ -14,6 +14,7 @@ class IndexController extends Controller
         //TODO: change so that only necessary data is sent to the frontend
         return Inertia::render('Index/Index', [
             'foodItems' => \App\Models\FoodItem::with('image')->get(),
+            'rooms' => \App\Models\Room::all(),
         ]);
     }
 }

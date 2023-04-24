@@ -13,8 +13,7 @@
       </div>
       <div class="form__second-col">
         <div>
-          <label for=""> finns inte i lager</label>
-          <input v-model="form.status" class="" type="checkbox" placeholder="title" />
+          <input v-model.number="form.beds" class="input" type="number" placeholder="antalet sängar" />
         </div>
       </div>
     </div>
@@ -38,7 +37,7 @@ const props = defineProps({
 const form = useForm({
   title: props.isEdit ? props.item.title : '',
   desc: props.isEdit ? props.item.desc : '',
-  status: props.isEdit ? props.item.status : '',
+  beds: props.isEdit ? props.item.beds : '',
 })
 
 const submit = () => {
