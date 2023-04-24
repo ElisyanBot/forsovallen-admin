@@ -1,7 +1,8 @@
 <template>
   <section id="book-room">
+      <BookRoomForm v-if="showBookForm" @close-book-form="closeBookForm" />
     <UpperDivider />
-    <BookCta />
+    <BookCta @book-room-action="openBookForm" />
     <DisplayRooms :rooms="rooms" />
     <BottomDivider />
   </section>
@@ -12,10 +13,21 @@ import BookCta from './components/BookCta.vue'
 import BottomDivider from './components/BottomDivider.vue'
 import UpperDivider from './components/UpperDivider.vue'
 import DisplayRooms from './components/RoomCards/DisplayRooms.vue'
+import BookRoomForm from "./components/BookRoomForm.vue";
+import {ref } from 'vue';
 
 defineProps({
   rooms: Array,
 })
+
+const showBookForm = ref(false);
+
+const openBookForm = () => {
+  showBookForm.value = true;
+}
+const closeBookForm = () => {
+  showBookForm.value = false;
+}
 </script>
 
 <style scoped lang="scss">

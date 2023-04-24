@@ -5,12 +5,13 @@
     <div class="book-cta__text-container">
       <h2> bo på frösövallen </h2>
       <h3> vandrarhem </h3>
-      <button @click=""> boka rum här </button>
+      <button @click="$emit('bookRoomAction')"> boka rum här </button>
     </div>
   </section>
 </template>
 
 <script setup>
+   defineEmits(['bookRoomAction']);
 </script>
 
 <style scoped lang="scss">

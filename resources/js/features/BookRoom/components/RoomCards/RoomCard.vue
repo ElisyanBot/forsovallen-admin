@@ -11,13 +11,9 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  room: Object,
-})
-
-if(props.room.image) {
-  console.log(props.room.image)
-}
+    const props = defineProps({
+      room: Object,
+    })
 </script>
 
 <style scoped lang="scss">
