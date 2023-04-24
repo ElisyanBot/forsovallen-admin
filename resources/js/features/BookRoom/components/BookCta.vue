@@ -1,0 +1,74 @@
+<template>
+  <section class="book-cta">
+    <picture />
+    <div class="book-cta__green-background" />
+    <div class="book-cta__text-container">
+      <h2> bo på frösövallen </h2>
+      <h3> vandrarhem </h3>
+      <button @click=""> boka rum här </button>
+    </div>
+  </section>
+</template>
+
+<script setup>
+</script>
+
+<style scoped lang="scss">
+    section.book-cta {
+        position: relative;
+        display: flex;
+        height: 75rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+       picture {
+           width: 100%;
+           height: inherit;
+           background-color: lightgray
+       }
+        .book-cta__green-background {
+              width: 100%;
+               max-width: 77rem;
+              height: inherit;
+              background-color: #1C4E46;
+       }
+        .book-cta__text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 2;
+            background-color: #f2f2f2;
+            width: 100%;
+            max-width: 127.2rem;
+            height: 43rem;
+           h2 {
+               font-size: 5.8rem;
+               color: #1C4E46;
+               text-transform: uppercase;
+
+           }
+        h3 {
+            color: #bdbba4;
+            font-size: 4.8rem;
+            text-transform: uppercase;
+            font-weight: normal;
+            margin-bottom: 5rem;
+           }
+        }
+        button {
+            width: 100%;
+            max-width: 75rem;
+            height: 10rem;
+            border: 4px solid #1C4E46;
+            color: #1C4E46;
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
+</style>

@@ -4,6 +4,7 @@
     <AboutUs />
     <LearnMoreFeature />
     <FoodTable :food-items="foodItems" />
+    <BookRoom />
   </main>
   <footer />
 </template>
@@ -13,6 +14,7 @@ import LearnMoreFeature from '../../features/LearnMoreSection/LearnMoreFeature.v
 import FoodTable from '../../features/FoodTable/FoodTable.vue'
 import AboutUs from '../../components/AboutUs.vue'
 import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
+import BookRoom from '../../features/BookRoom/BookRoom.vue'
 
 defineProps({
   foodItems: Array,

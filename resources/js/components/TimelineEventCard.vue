@@ -20,8 +20,8 @@
     </article>
     <div class="timeline">
       <div class="date-section">
-          <p> {{ date[0] }} {{ date[1]}} </p>
-          <p>{{ date[2]}} </p>
+        <p> {{ date[0] }} {{ date[1] }} </p>
+        <p>{{ date[2] }} </p>
       </div>
       <div class="line" />
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import moment from 'moment';
+import moment from 'moment'
 
 const props = defineProps({
   item: Object,
@@ -40,7 +40,7 @@ const props = defineProps({
   },
 })
 
-const date = moment(props.item.date).format('DD MMMM YYYY').split(' ');
+const date = moment(props.item.date).format('DD MMMM YYYY').split(' ')
 
 
 </script>

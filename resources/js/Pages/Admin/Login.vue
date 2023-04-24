@@ -1,6 +1,6 @@
 <template>
   <MainWidthLayout>
-      <h3 class="admin-login__header"> admin | Login </h3>
+    <h3 class="admin-login__header"> admin | Login </h3>
     <form class="login-form" @submit.prevent="login">
       <div class="login-form__input-container">
         <label for="email" />

@@ -6,8 +6,8 @@
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'foodItems'}"
         @click="() => {
-            currentForm = 'foodItems';
-            resetPagination();
+          currentForm = 'foodItems';
+          resetPagination();
         }"
       >
         meny
@@ -15,8 +15,8 @@
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'events'}"
         @click="() => {
-            currentForm = 'events';
-            resetPagination();
+          currentForm = 'events';
+          resetPagination();
         }"
       >
         händelser
@@ -24,8 +24,8 @@
       <button
         :class="{ 'admin__form-tab': true, 'admin__form-tab--selected': currentForm === 'rooms'}"
         @click="() => {
-            currentForm = 'rooms';
-            resetPagination();
+          currentForm = 'rooms';
+          resetPagination();
         }"
       >
         vandrarhem
@@ -97,19 +97,17 @@
         </ListItemLayout>
       </div>
     </section>
-    <div class="pagination" v-if="pages > 1">
-        <span
-            :class="{'pagination__dot': true, 'pagination__dot--selected': index === selectedPage }"
-            v-for="(num, index) in pages"
-            @click="() => {
-                changePage(index);
-                selectedPage = index;
-            }"
-        >
-        </span>
+    <div v-if="pages > 1" class="pagination">
+      <span
+        v-for="(num, index) in pages"
+        :class="{'pagination__dot': true, 'pagination__dot--selected': index === selectedPage }"
+        @click="() => {
+          changePage(index);
+          selectedPage = index;
+        }"
+      />
     </div>
   </MainWidthLayout>
-
 </template>
 
 <script setup>
@@ -127,37 +125,37 @@ const props = defineProps({
   rooms: Array,
 })
 
-const currentForm = ref('foodItems');
-const itemsPerPage = ref(5);
-const startIndex = ref(0);
-const endIndex = ref(5);
-const selectedPage = ref(0);
+const currentForm = ref('foodItems')
+const itemsPerPage = ref(5)
+const startIndex = ref(0)
+const endIndex = ref(5)
+const selectedPage = ref(0)
 
 const changePage = (index) => {
-    if(index === 0 ) {
-        startIndex.value = 0;
-        endIndex.value = itemsPerPage.value;
-        return;
-    }
+  if(index === 0 ) {
+    startIndex.value = 0
+    endIndex.value = itemsPerPage.value
+    return
+  }
 
-    startIndex.value = index * itemsPerPage.value;
-    endIndex.value = startIndex.value + itemsPerPage.value;
+  startIndex.value = index * itemsPerPage.value
+  endIndex.value = startIndex.value + itemsPerPage.value
 }
 
 const resetPagination = () => {
-    startIndex.value = 0;
-    endIndex.value = itemsPerPage.value;
-    selectedPage.value = 0;
+  startIndex.value = 0
+  endIndex.value = itemsPerPage.value
+  selectedPage.value = 0
 }
 
 const pages = computed( () => {
-    return Math.ceil(props[currentForm.value].length/itemsPerPage.value);
+  return Math.ceil(props[currentForm.value].length/itemsPerPage.value)
 })
 
 const pagination = (array, start, end) => {
-    if(start < 0 || start > array.length || end < start) return;
+  if(start < 0 || start > array.length || end < start) return
 
-    return array.slice(start, end);
+  return array.slice(start, end)
 }
 
 </script>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('rooms', function (Blueprint $table) {
             $table->string('title');
             $table->mediumText('desc');
-            $table->boolean('status');
+            $table->integer('beds');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
         Schema::table('rooms', function (Blueprint $table) {
             $table->dropColumn('title');
             $table->dropColumn('desc');
-            $table->dropColumn('status');
+            $table->dropColumn('beds');
         });
     }
 };
