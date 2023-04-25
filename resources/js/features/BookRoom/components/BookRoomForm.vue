@@ -10,22 +10,38 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Quisque ligula erat, viverra eu urna a, porttitor elementum augue.
-                    Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo. Ut luctus iaculis tincidunt.
-                    Sed fringilla tellus id ultricies sodales. Nullam finibus dignissim nisl eu posuere.
-                    Vivamus vulputate leo vel ligula euismod auctor. Nulla eget pretium erat.
+                    Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo.
                 </p>
             </div>
             <div class="room-info">
                 <h3 class="book-room-form__second-header"> rum information </h3>
-                <select class="input">
-                    <option value="" disabled selected>Antal sängar</option>
-                    <option value="2">2</option>
-                    <option value="4">4</option>
-                    <option value="6">6</option>
-                </select>
+                <div class="important-info">
+                    <p class="info-divider">
+                        Tänk på att ni inte behöver boka antalet personer som kommer att sova på en tält eller
+                        husvagnsplats.
+                    </p>
+                </div>
                 <div class="two-input-container">
                     <input class="input" type="number" placeholder="antal vuxna" v-model.number="form"/>
                     <input class="input" type="number" placeholder="antal barn" v-model.number="form"/>
+                </div>
+
+                <div class="two-input-container">
+                    <input class="input" type="number" placeholder="antal husvangsplatser" v-model.number="form"/>
+                    <input class="input" type="number" placeholder="antal tältplatser" v-model.number="form"/>
+                </div>
+            </div>
+            <div class="period-info">
+                <h3 class="book-room-form__second-header"> period information </h3>
+                <div class="two-input-container">
+                    <div class="input__date-container">
+                        <label for="start-date"> Från </label>
+                        <input name="start-date" class="input" type="date" v-model.number="form"/>
+                    </div>
+                    <div class="input__date-container">
+                        <label for="end-date"> Till </label>
+                        <input name="end-date" class="input" type="date" placeholder="till" v-model.number="form"/>
+                    </div>
                 </div>
             </div>
             <div class="contact-info">
@@ -38,7 +54,7 @@
             </div>
 
             <div class="book-room-form__btn-container">
-                <div class="importent-info">
+                <div class="important-info">
                     <h4> OBS! </h4>
                     <p>
                         Vi skickar ut ett svar när rummet är bokat,
@@ -78,6 +94,31 @@
         gap: 2rem;
     }
 
+    .input__date-container {
+        width: 50%;
+        label {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .important-info {
+        h4 {
+            color: #c64533;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            width: 80%;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        p.info-divider {
+            width: 100%;
+            margin: 0 0 2rem 0;
+            color: #2d3748;
+        }
+    }
+
     .book-room-form__focus {
         position: fixed;
         top: 0;
@@ -94,7 +135,7 @@
         .book-room-form {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 2rem;
             width: 75rem;
             background-color: #f2f2f2;
             padding: 4rem;
@@ -131,17 +172,6 @@
                 justify-content: space-between;
                 align-items: center;
 
-                .importent-info {
-                    width: 70%;
-                    h4 {
-                        color: #c64533;
-                        margin-bottom: 0.5rem;
-                    }
-                    p {
-                        font-weight: bold;
-                        font-size: 1.4rem;
-                    }
-                }
 
                 button {
                     color: white;

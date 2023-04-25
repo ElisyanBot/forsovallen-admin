@@ -5,28 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Room extends Model
+class ReserveRoom extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'desc',
-        'beds',
+        'name',
+        'email',
+        'phone',
+        'adults',
+        'children',
+        'tent_spots',
+        'caravan_spots',
+        'check_in',
+        'check_out',
+        'status',
     ];
 
-    public function image() : hasOne
-    {
-        return $this->hasOne(\App\Models\RoomImage::class);
-    }
-
-    public function bookedRooms(): hasMany
+    public function rooms(): hasMany
     {
         return $this->hasMany(
             \App\Models\BookedRoom::class,
-            'room_id',
+            'reserved_room_id',
         );
     }
 }
