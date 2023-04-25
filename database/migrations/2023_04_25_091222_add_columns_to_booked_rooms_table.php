@@ -17,13 +17,11 @@ return new class extends Migration
 
             $table->foreignIdFor(
                 \App\Models\Room::class,
-                'room_id'
-            )->constrained('rooms');
+            )->nullable()->constrained('rooms');
 
             $table->foreignIdFor(
                 \App\Models\ReserveRoom::class,
-                'reserved_room_id'
-            )->constrained('reserve_rooms');
+            )->nullable()->constrained('reserve_rooms');
         });
     }
 

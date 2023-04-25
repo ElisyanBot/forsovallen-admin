@@ -20,14 +20,12 @@ class ReserveRoom extends Model
         'caravan_spots',
         'check_in',
         'check_out',
-        'status',
     ];
 
     public function rooms(): hasMany
     {
         return $this->hasMany(
             \App\Models\BookedRoom::class,
-            'reserved_room_id',
         );
     }
 }

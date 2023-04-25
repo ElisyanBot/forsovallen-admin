@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ReserveRoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\AdminController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\RoomController;
 */
 
 Route::get('/', [IndexController::class, 'index']);
+Route::post('/reserve-room' , [ReserveRoomController::class, 'store']);
 Route::get('/events', [EventController::class, 'index']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -30,6 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     ->except(['create', 'edit']);
   Route::resource('/rooms', RoomController::class)
     ->except(['create', 'edit']);
+
+  Route::get('/reservations', [NotificationController::class, 'index']);
 });
 
 Route::get('admin/login', [AuthController::class, 'create'])

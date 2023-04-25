@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\ReserveRoom;
 use App\Models\Room;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -15,8 +16,9 @@ class ReservedRoomNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        private ReserveRoom $reserveRoom
+    ) {
         //
     }
 
@@ -27,7 +29,7 @@ class ReservedRoomNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -49,7 +51,7 @@ class ReservedRoomNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'reserve_room_id' => $this->reserveRoom->id,
         ];
     }
 }

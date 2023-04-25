@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::table('reserve_rooms', function (Blueprint $table) {
             $table->string('name');
             $table->string('email');
-            $table->string('phone_number')->default('');
-            $table->integer('adults')->default(0);
-            $table->integer('children')->default(0);
-            $table->integer('tent_spots')->default(0);
-            $table->integer('caravan_spots')->default(0);
+            $table->string('phone')->nullable()->default('');
+            $table->integer('adults')->nullable()->default(0);
+            $table->integer('children')->nullable()->default(0);
+            $table->integer('tent_spots')->nullable()->default(0);
+            $table->integer('caravan_spots')->nullable()->default(0);
             $table->date('check_in');
             $table->date('check_out');
             $table->boolean('status')->default(false);

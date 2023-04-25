@@ -10,8 +10,8 @@
         <h2> admin | {{ user.name }} </h2>
         <Link href="/admin/logout" method="DELETE" as="button"> logga ut </Link>
       </div>
-      
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid. 
+
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid.
       Deserunt provident commodi cupiditate architecto ratione libero quos numquam aliquam repudiandae.
     </MainWidthLayout>
     <ControlPanel :food-categories="foodCategories" :food-items="foodItems" :events="events" :rooms="rooms" />

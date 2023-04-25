@@ -1,6 +1,6 @@
 <template>
     <div class="book-room-form__focus" >
-        <form class="book-room-form">
+        <form @submit.prevent="reserve" class="book-room-form">
             <div class="book-room-form__header">
                 <h2> boka boende </h2>
                 <button @click="$emit('closeBookForm')"> x </button>
@@ -22,13 +22,13 @@
                     </p>
                 </div>
                 <div class="two-input-container">
-                    <input class="input" type="number" placeholder="antal vuxna" v-model.number="form"/>
-                    <input class="input" type="number" placeholder="antal barn" v-model.number="form"/>
+                    <input class="input" type="number" placeholder="antal vuxna" v-model.number="form.adults"/>
+                    <input class="input" type="number" placeholder="antal barn" v-model.number="form.children"/>
                 </div>
 
                 <div class="two-input-container">
-                    <input class="input" type="number" placeholder="antal husvangsplatser" v-model.number="form"/>
-                    <input class="input" type="number" placeholder="antal tältplatser" v-model.number="form"/>
+                    <input class="input" type="number" placeholder="antal husvangsplatser" v-model.number="form.caravan_spots"/>
+                    <input class="input" type="number" placeholder="antal tältplatser" v-model.number="form.tent_spots" />
                 </div>
             </div>
             <div class="period-info">
@@ -36,21 +36,21 @@
                 <div class="two-input-container">
                     <div class="input__date-container">
                         <label for="start-date"> Från </label>
-                        <input name="start-date" class="input" type="date" v-model.number="form"/>
+                        <input id="start-date" class="input" type="date" v-model="form.check_in"/>
                     </div>
                     <div class="input__date-container">
                         <label for="end-date"> Till </label>
-                        <input name="end-date" class="input" type="date" placeholder="till" v-model.number="form"/>
+                        <input id="end-date" class="input" type="date" placeholder="till" v-model="form.check_out"/>
                     </div>
                 </div>
             </div>
             <div class="contact-info">
                 <h3 class="book-room-form__second-header"> konakt infomation </h3>
                 <div class="two-input-container">
-                    <input class="input" type="text" placeholder="namn" v-model="form"/>
-                    <input class="input" type="text" placeholder="mobilnummer" v-model="form"/>
+                    <input class="input" type="text" placeholder="namn" v-model="form.name"/>
+                    <input class="input" type="text" placeholder="mobilnummer" v-model="form.phone"/>
                 </div>
-                <input class="input" type="email" placeholder="email" v-model="form"/>
+                <input class="input" type="email" placeholder="email" v-model="form.email"/>
             </div>
 
             <div class="book-room-form__btn-container">
@@ -68,7 +68,26 @@
     </div>
 </template>
 <script setup>
+    import { useForm } from '@inertiajs/vue3';
+
     defineEmits(['closeBookForm']);
+
+    const form = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        check_in: '',
+        check_out: '',
+        adults: null,
+        children: null,
+        tent_spots: null,
+        caravan_spots: null,
+    });
+
+    const reserve = () => {
+        form.post('/reserve-room');
+    };
+
 </script>
 
 <style scoped lang="scss">
@@ -123,7 +142,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 100;
+        z-index: 100000;
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
