@@ -7,8 +7,8 @@
       <slot />
     </div>
     <div class="admin__list-item__btn-container">
-      <button @click="showForm = true"> edit </button>
       <Link :href="deletePath" method="DELETE" as="button"> delete </Link>
+      <button @click="showForm = true"> edit </button>
     </div>
   </div>
   <div v-if="showForm" class="admin__list-item__edit-form admin__form">

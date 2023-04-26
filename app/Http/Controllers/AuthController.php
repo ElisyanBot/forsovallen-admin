@@ -13,8 +13,8 @@ class AuthController extends Controller
     {
         return Inertia::render('Admin/Login');
     }
-    
-    public function store(Request $request) 
+
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'email' => 'required|string|email',
@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         if(!Auth::attempt($validated, $request->stayLoggedIn)) {
             throw ValidationException::withMessages([
-                'email' => 'auth failed',
+                'email' => 'Misslyckad inloggining',
             ]);
         }
 

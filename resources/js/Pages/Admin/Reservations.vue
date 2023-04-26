@@ -1,33 +1,36 @@
 <template>
-    <main class="admin-main">
-        <MainWidthLayout>
-            <div v-if="user" class="admin__header">
-                <h2> admin | {{ user.name }} </h2>
-                <Link href="/admin/logout" method="DELETE" as="button"> logga ut </Link>
-            </div>
+  <main class="admin-main">
+    <MainWidthLayout>
+      <div v-if="user" class="admin__header">
+        <h2> admin | {{ user.name }} </h2>
+        <Link href="/admin/logout" method="DELETE" as="button"> logga ut </Link>
+      </div>
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid.
-            Deserunt provident commodi cupiditate architecto ratione libero quos numquam aliquam repudiandae.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid.
+      Deserunt provident commodi cupiditate architecto ratione libero quos numquam aliquam repudiandae.
 
-       <!--     <p v-for="res in reservations"> {{res}} </p> -->
-        </MainWidthLayout>
-    </main>
-    <footer>
-
-    </footer>
+      <p v-for="res in reservations">
+        <!-- todo: add reserve notification comp here -->
+        {{ res.id }} {{ res.name }} {{ res.email }} {{ res.phone }}
+      </p>
+    </MainWidthLayout>
+  </main>
+  <footer />
 </template>
 
 <script setup>
 
-    import { Link } from '@inertiajs/vue3'
-    import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import {Link, usePage} from '@inertiajs/vue3'
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import {computed} from 'vue'
 
 
-    const props = defineProps({
-        reservations: Array,
-    })
+const props = defineProps({
+  reservations: Array,
+})
 
-    console.log(props.reservations)
+const user = computed(() => usePage().props.user )
+
 </script>
 
 <style scoped lang="scss">

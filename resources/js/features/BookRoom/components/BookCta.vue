@@ -1,6 +1,8 @@
 <template>
   <section class="book-cta">
-    <picture />
+    <picture>
+      <img src="/img/boka-boende.png" />
+    </picture>
     <div class="book-cta__green-background" />
     <div class="book-cta__text-container">
       <h2> bo på frösövallen </h2>
@@ -11,7 +13,7 @@
 </template>
 
 <script setup>
-   defineEmits(['bookRoomAction']);
+defineEmits(['bookRoomAction'])
 </script>
 
 <style scoped lang="scss">
@@ -27,7 +29,13 @@
        picture {
            width: 100%;
            height: inherit;
-           background-color: lightgray
+           background-color: lightgray;
+
+           img {
+               width: 100%;
+               height: inherit;
+               object-fit: cover;
+           }
        }
         .book-cta__green-background {
               width: 100%;

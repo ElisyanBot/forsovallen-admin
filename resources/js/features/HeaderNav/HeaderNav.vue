@@ -1,6 +1,6 @@
 <template>
   <picture class="main-header__img">
-    <img src="/images/main-header__img.png" alt="" />
+    <img src="/img/main-header__img.png" alt="" />
   </picture>
   <MainWidthLayout>
     <header class="header-nav">

@@ -11,11 +11,14 @@
       />
     </section>
   </main>
+  <FooterImgBanner />
+  <footer />
 </template>
 <script setup>
 import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 import TimelineEventCard from '../../components/TimelineEventCard.vue'
+import FooterImgBanner from '../../components/FooterImgBanner.vue'
 
 defineProps({
   events: Array,

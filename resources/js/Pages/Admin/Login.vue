@@ -19,11 +19,13 @@
       </div>
     </form>
   </MainWidthLayout>
+  <FooterImgBanner />
 </template>
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import FooterImgBanner from '../../components/FooterImgBanner.vue'
 
 const form = useForm({
   email: '',
@@ -53,6 +55,8 @@ const login = () => form.post('/admin/login')
     height: 50rem;
     width: 100rem;
     margin: auto;
+      position: relative;
+      z-index: 2;
 
     .login-form__input-container{
       margin: 2rem 0;

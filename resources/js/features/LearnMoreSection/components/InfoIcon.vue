@@ -58,6 +58,12 @@ const handleClick = () => {
     justify-content: center;
     align-items: center;
 
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
     div {
       position: absolute;
       background-color: #7d9a89;
@@ -71,10 +77,6 @@ const handleClick = () => {
         width: inherit;
         height: 9rem;
         color: #1c4e46;
-      }
-
-      .test {
-        filter: drop-shadow(0px 0px 8px 10px #092420);
       }
     }
   }

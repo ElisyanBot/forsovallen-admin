@@ -11,9 +11,9 @@
 </template>
 
 <script setup>
-    const props = defineProps({
-      room: Object,
-    })
+const props = defineProps({
+  room: Object,
+})
 </script>
 
 <style scoped lang="scss">

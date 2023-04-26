@@ -26,15 +26,20 @@ Route::post('/reserve-room' , [ReserveRoomController::class, 'store']);
 Route::get('/events', [EventController::class, 'index']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-  Route::get('/', [AdminController::class, 'index']);
+
+    Route::get('/', [AdminController::class, 'index']);
   Route::resource('/food-items', FoodItemController::class)
     ->except(['create, edit']);
   Route::resource('/events', EventController::class)
     ->except(['create', 'edit']);
   Route::resource('/rooms', RoomController::class)
     ->except(['create', 'edit']);
-
+  Route::resource('/reservations', ReserveRoomController::class)
+    ->only(['show', 'destroy', 'update']);
+  // reservations routes
   Route::get('/reservations', [NotificationController::class, 'index']);
+
+
 });
 
 Route::get('admin/login', [AuthController::class, 'create'])

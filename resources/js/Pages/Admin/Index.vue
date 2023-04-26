@@ -16,6 +16,7 @@
     </MainWidthLayout>
     <ControlPanel :food-categories="foodCategories" :food-items="foodItems" :events="events" :rooms="rooms" />
   </main>
+  <FooterImgBanner />
   <footer />
 </template>
 
@@ -24,6 +25,7 @@ import ControlPanel from '../../features/ControllPanel/ControlPanel.vue'
 import { usePage, Link } from '@inertiajs/vue3'
 import { computed } from 'vue'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import FooterImgBanner from '../../components/FooterImgBanner.vue'
 
 defineProps({
   foodCategories: Array,

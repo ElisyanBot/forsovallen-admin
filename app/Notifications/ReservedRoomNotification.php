@@ -51,7 +51,16 @@ class ReservedRoomNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'reserve_room_id' => $this->reserveRoom->id,
+            'id' => $this->reserveRoom->id,
+            'name' => $this->reserveRoom->name,
+            'email' => $this->reserveRoom->email,
+            'phone' => $this->reserveRoom->phone,
+            'check_in' => $this->reserveRoom->check_in,
+            'check_out' => $this->reserveRoom->check_out,
+            'adults' => $this->reserveRoom->adults,
+            'children' => $this->reserveRoom->children,
+            'tent_spots' => $this->reserveRoom->tent_spots,
+            'caravan_spots' => $this->reserveRoom->caravan_spots,
         ];
     }
 }

@@ -1,92 +1,92 @@
 <template>
-    <div class="book-room-form__focus" >
-        <form @submit.prevent="reserve" class="book-room-form">
-            <div class="book-room-form__header">
-                <h2> boka boende </h2>
-                <button @click="$emit('closeBookForm')"> x </button>
-            </div>
-            <div class="text-info">
-                <h3 class="book-room-form__second-header"> infomation </h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Quisque ligula erat, viverra eu urna a, porttitor elementum augue.
-                    Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo.
-                </p>
-            </div>
-            <div class="room-info">
-                <h3 class="book-room-form__second-header"> rum information </h3>
-                <div class="important-info">
-                    <p class="info-divider">
-                        Tänk på att ni inte behöver boka antalet personer som kommer att sova på en tält eller
-                        husvagnsplats.
-                    </p>
-                </div>
-                <div class="two-input-container">
-                    <input class="input" type="number" placeholder="antal vuxna" v-model.number="form.adults"/>
-                    <input class="input" type="number" placeholder="antal barn" v-model.number="form.children"/>
-                </div>
+  <div class="book-room-form__focus">
+    <form class="book-room-form" @submit.prevent="reserve">
+      <div class="book-room-form__header">
+        <h2> boka boende </h2>
+        <button @click="$emit('closeBookForm')"> x </button>
+      </div>
+      <div class="text-info">
+        <h3 class="book-room-form__second-header"> infomation </h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Quisque ligula erat, viverra eu urna a, porttitor elementum augue.
+          Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo.
+        </p>
+      </div>
+      <div class="room-info">
+        <h3 class="book-room-form__second-header"> rum information </h3>
+        <div class="important-info">
+          <p class="info-divider">
+            Tänk på att ni inte behöver boka antalet personer som kommer att sova på en tält eller
+            husvagnsplats.
+          </p>
+        </div>
+        <div class="two-input-container">
+          <input v-model.number="form.adults" class="input" type="number" placeholder="antal vuxna" />
+          <input v-model.number="form.children" class="input" type="number" placeholder="antal barn" />
+        </div>
 
-                <div class="two-input-container">
-                    <input class="input" type="number" placeholder="antal husvangsplatser" v-model.number="form.caravan_spots"/>
-                    <input class="input" type="number" placeholder="antal tältplatser" v-model.number="form.tent_spots" />
-                </div>
-            </div>
-            <div class="period-info">
-                <h3 class="book-room-form__second-header"> period information </h3>
-                <div class="two-input-container">
-                    <div class="input__date-container">
-                        <label for="start-date"> Från </label>
-                        <input id="start-date" class="input" type="date" v-model="form.check_in"/>
-                    </div>
-                    <div class="input__date-container">
-                        <label for="end-date"> Till </label>
-                        <input id="end-date" class="input" type="date" placeholder="till" v-model="form.check_out"/>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-info">
-                <h3 class="book-room-form__second-header"> konakt infomation </h3>
-                <div class="two-input-container">
-                    <input class="input" type="text" placeholder="namn" v-model="form.name"/>
-                    <input class="input" type="text" placeholder="mobilnummer" v-model="form.phone"/>
-                </div>
-                <input class="input" type="email" placeholder="email" v-model="form.email"/>
-            </div>
+        <div class="two-input-container">
+          <input v-model.number="form.caravan_spots" class="input" type="number" placeholder="antal husvangsplatser" />
+          <input v-model.number="form.tent_spots" class="input" type="number" placeholder="antal tältplatser" />
+        </div>
+      </div>
+      <div class="period-info">
+        <h3 class="book-room-form__second-header"> period information </h3>
+        <div class="two-input-container">
+          <div class="input__date-container">
+            <label for="start-date"> Från </label>
+            <input id="start-date" v-model="form.check_in" class="input" type="date" />
+          </div>
+          <div class="input__date-container">
+            <label for="end-date"> Till </label>
+            <input id="end-date" v-model="form.check_out" class="input" type="date" placeholder="till" />
+          </div>
+        </div>
+      </div>
+      <div class="contact-info">
+        <h3 class="book-room-form__second-header"> konakt infomation </h3>
+        <div class="two-input-container">
+          <input v-model="form.name" class="input" type="text" placeholder="namn" />
+          <input v-model="form.phone" class="input" type="text" placeholder="mobilnummer" />
+        </div>
+        <input v-model="form.email" class="input" type="email" placeholder="email" />
+      </div>
 
-            <div class="book-room-form__btn-container">
-                <div class="important-info">
-                    <h4> OBS! </h4>
-                    <p>
-                        Vi skickar ut ett svar när rummet är bokat,
-                        vi tar ej in mer uppgifter ifrån dig och all
-                        betalning sker på plats.
-                    </p>
-                </div>
-                <button class="book-room-form__button"> boka </button>
-            </div>
-        </form>
-    </div>
+      <div class="book-room-form__btn-container">
+        <div class="important-info">
+          <h4> OBS! </h4>
+          <p>
+            Vi skickar ut ett svar när rummet är bokat,
+            vi tar ej in mer uppgifter ifrån dig och all
+            betalning sker på plats.
+          </p>
+        </div>
+        <button class="book-room-form__button"> boka </button>
+      </div>
+    </form>
+  </div>
 </template>
 <script setup>
-    import { useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3'
 
-    defineEmits(['closeBookForm']);
+defineEmits(['closeBookForm'])
 
-    const form = useForm({
-        name: '',
-        email: '',
-        phone: '',
-        check_in: '',
-        check_out: '',
-        adults: null,
-        children: null,
-        tent_spots: null,
-        caravan_spots: null,
-    });
+const form = useForm({
+  name: '',
+  email: '',
+  phone: '',
+  check_in: '',
+  check_out: '',
+  adults: null,
+  children: null,
+  tent_spots: null,
+  caravan_spots: null,
+})
 
-    const reserve = () => {
-        form.post('/reserve-room');
-    };
+const reserve = () => {
+  form.post('/reserve-room')
+}
 
 </script>
 

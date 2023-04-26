@@ -30,6 +30,7 @@
       />
     </div>
     <div class="info-text__line-animation">
+      <!-- todo: change line-green.svg to a div line instead -->
       <img src="/img/line-green.svg" alt="animation" />
       <img
         :style="{ left: arrowPlacement + '%' }"
@@ -87,7 +88,7 @@ watchEffect(() => {
     position: relative;
     .line-green__arrow {
       position: absolute;
-      top: -3.2rem;
+      top: -3.33rem;
       left: 87%;
       height: 5.5rem;
       width: 8rem;

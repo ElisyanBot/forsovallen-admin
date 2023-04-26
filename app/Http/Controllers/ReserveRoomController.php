@@ -26,6 +26,12 @@ class ReserveRoomController extends Controller
 
         return redirect('/')->with('success', 'Din reservation har skapats');
     }
+
+    public function show(ReserveRoom $reserveRoom)
+    {
+        return ReserveRoom::find($reserveRoom);
+    }
+
     public function destroy(ReserveRoom $reserveRoom)
     {
         $reserveRoom->delete();
