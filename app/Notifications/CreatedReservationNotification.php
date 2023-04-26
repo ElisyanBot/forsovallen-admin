@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreatedReservation extends Notification
+class CreatedReservationNotification extends Notification
 {
     use Queueable;
 
@@ -15,7 +15,6 @@ class CreatedReservation extends Notification
      * Create a new notification instance.
      */
     public function __construct(
-        private ReserveRoom $reserveRoom
     )
     {
         //
@@ -38,8 +37,7 @@ class CreatedReservation extends Notification
     {
         return (new MailMessage)
                     ->subject('Skapad resrvation')
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('test')
                     ->line('Thank you for using our application!');
     }
 

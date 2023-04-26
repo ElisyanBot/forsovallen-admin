@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ReserveRoom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ReserveRoomController extends Controller
 {
@@ -23,6 +24,7 @@ class ReserveRoomController extends Controller
 
         \App\Models\User::first()
             ->notify(new \App\Notifications\ReservedRoomNotification($reservation));
+
 
         return redirect('/')->with('success', 'Din reservation har skapats');
     }
