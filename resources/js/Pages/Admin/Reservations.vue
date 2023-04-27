@@ -29,6 +29,7 @@ const props = defineProps({
   reservations: Array,
 })
 
+console.log(props.reservations)
 const user = computed(() => usePage().props.user )
 
 </script>

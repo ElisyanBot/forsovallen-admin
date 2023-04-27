@@ -17,6 +17,16 @@ class Room extends Model
         'beds',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($room) {
+            $room->image()->delete();
+        });
+    }
+
+
     public function image() : hasOne
     {
         return $this->hasOne(\App\Models\RoomImage::class);

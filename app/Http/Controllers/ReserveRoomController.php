@@ -37,5 +37,6 @@ class ReserveRoomController extends Controller
     public function destroy(ReserveRoom $reserveRoom)
     {
         $reserveRoom->delete();
+        return redirect('/admin/reservations')->with('success', 'Reservationen har tagits bort');
     }
 }

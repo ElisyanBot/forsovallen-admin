@@ -21,10 +21,12 @@ use App\Http\Controllers\RoomController;
 |
 */
 
+//public routes
 Route::get('/', [IndexController::class, 'index']);
 Route::post('/reserve-room' , [ReserveRoomController::class, 'store']);
 Route::get('/events', [EventController::class, 'index']);
 
+//admin routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/', [AdminController::class, 'index']);
@@ -34,12 +36,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     ->except(['create', 'edit']);
   Route::resource('/rooms', RoomController::class)
     ->except(['create', 'edit']);
-  Route::resource('/reservations', ReserveRoomController::class)
-    ->only(['show', 'destroy', 'update']);
+  Route::resource('/reserve-rooms', ReserveRoomController::class)
+    ->only(['show', 'destroy']);
+
+  Route::post('/book-room', [\App\Http\Controllers\BookedRoomController::class, 'storeMultiple']);
   // reservations routes
   Route::get('/reservations', [NotificationController::class, 'index']);
-
-
+  Route::delete('/reservations/{id}', [NotificationController::class, 'destroy']);
 });
 
 Route::get('admin/login', [AuthController::class, 'create'])

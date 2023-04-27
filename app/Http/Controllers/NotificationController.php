@@ -13,12 +13,20 @@ class NotificationController extends Controller
 
         if($request->user()->notifications()) {
            foreach ( $request->user()->notifications()->get() as $notification) {
-               $data[] = $notification->data;
+               $data[] = [
+                   'notice_id' => $notification->id,
+                  'data' => $notification->data,
+               ] ;
             }
         }
 
         return Inertia::render('Admin/Reservations', [
             'reservations' => $data,
         ]);
+    }
+
+    public function destroy(Request $request, string $id)
+    {
+        $request->user()->notifications()->find($id)->delete();
     }
 }

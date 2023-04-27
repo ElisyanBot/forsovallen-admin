@@ -61,6 +61,7 @@ class ReservedRoomNotification extends Notification
             'children' => $this->reserveRoom->children,
             'tent_spots' => $this->reserveRoom->tent_spots,
             'caravan_spots' => $this->reserveRoom->caravan_spots,
+            'deleted_at' => $this->reserveRoom->deleted_at,
         ];
     }
 }

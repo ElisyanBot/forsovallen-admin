@@ -18,6 +18,15 @@ class FoodItem extends Model
          'by_category_id',
     ];
 
+     public static function boot()
+     {
+         parent::boot();
+
+         self::deleting(function ($foodItem) {
+             $foodItem->image()->delete();
+         });
+     }
+
      public function foodCategory()
     {
         return $this->belongsTo(

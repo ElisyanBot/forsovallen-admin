@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BookedRoom;
+use App\Models\ReserveRoom;
 use App\Models\RoomImage;
 use Illuminate\Http\Request;
 use App\Models\Room;
@@ -13,7 +15,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        //
+        return room::all();
     }
 
     /**
@@ -57,7 +59,7 @@ class RoomController extends Controller
         $room->update($request->validate([
             'title' => 'required|string',
             'desc' => 'required|string',
-            'status' => 'required|boolean',
+            'beds' => 'required|int',
         ]));
     }
 
@@ -67,5 +69,13 @@ class RoomController extends Controller
     public function destroy(Room $room)
     {
         $room->delete();
+    }
+
+    public function getAvailableRooms(ReserveRoom $reserveRoom)
+    {
+       $bookedRoom = resolve(BookedRoom::class);
+       $bookedRoomIds = $bookedRoom->getBookedRoomIds($reserveRoom);
+
+       return Room::whereNotIn('id', $bookedRoomIds)->get();
     }
 }

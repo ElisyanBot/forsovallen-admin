@@ -5,7 +5,9 @@
                 <h2> Reserveringar </h2>
                 <Filter />
             </div>
-           <HandleReservationItem v-for="res in reservations" :key="res.id" :reservation="res" />
+            <section class="handle-reservation-section">
+                <HandleReservationItem v-for="res in reservations" :key="res.data.id" :reservation="res" />
+            </section>
         </MainWidthLayout>
     </main>
 </template>
@@ -15,9 +17,10 @@
     import HandleReservationItem from "./components/HandleReservationItem.vue";
     import Filter from "./components/Filter.vue";
 
-    defineProps({
+   const props = defineProps({
         reservations: Array,
     })
+
 </script>
 
 <style scoped lang="scss">
@@ -32,5 +35,12 @@
             color: #c64533;
             text-transform: uppercase;
         }
+    }
+
+    .handle-reservation-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
     }
 </style>
