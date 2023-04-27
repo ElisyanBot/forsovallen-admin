@@ -123,9 +123,13 @@
         selecetedRooms.value.splice(selecetedRooms.value.indexOf(roomId), 1);
     }
 
+    //todo: make this to a better solution
     const handleDeleteItem = () => {
-        router.delete(`/admin/reserve-rooms/${props.reservation.data.id}`);
-        router.delete(`/admin/reservations/${props.reservation.notice_id}`);
+        router.delete(`/admin/reserve-rooms/${props.reservation.data.id}`, {
+            onSuccess: () => {
+                router.delete(`/admin/reservations/${props.reservation.notice_id}`);
+            }
+        });
     }
 
     const submit = () => {

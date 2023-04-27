@@ -6,7 +6,10 @@
                 <Filter />
             </div>
             <section class="handle-reservation-section">
-                <HandleReservationItem v-for="res in reservations" :key="res.data.id" :reservation="res" />
+                <HandleReservationItem v-if="reservations.length" v-for="res in reservations" :key="res.data.id" :reservation="res" />
+                <div v-else>
+                    inga aktiva reservationer
+                </div>
             </section>
         </MainWidthLayout>
     </main>
