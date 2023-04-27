@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreatedReservationNotification extends Notification
+class CreatedBookingNotification extends Notification
 {
     use Queueable;
 
@@ -36,7 +36,7 @@ class CreatedReservationNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject('Skapad resrvation')
+                    ->subject('Skapad bookning')
                     ->line('test')
                     ->line('Thank you for using our application!');
     }

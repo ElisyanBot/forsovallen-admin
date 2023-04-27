@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\CreatedReservation;
 use App\Models\ReserveRoom;
-use App\Notifications\CreatedReservationNotification;
+use App\Notifications\CreatedBookingNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -23,6 +23,6 @@ class sendCreatedReservationNotification
      */
     public function handle(CreatedReservation $event): void
     {
-        CreatedReservationNotification::class;
+        CreatedBookingNotification::class;
     }
 }

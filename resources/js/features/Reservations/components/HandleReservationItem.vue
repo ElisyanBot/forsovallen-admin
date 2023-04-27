@@ -135,6 +135,7 @@
     const submit = () => {
         const form = useForm({
             bookings: [],
+            email: props.reservation.data.email,
         });
         selecetedRooms.value.forEach((roomId) => {
             form.bookings.push({
