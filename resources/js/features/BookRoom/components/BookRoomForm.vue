@@ -13,6 +13,7 @@
           Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo.
         </p>
       </div>
+
       <div class="room-info">
         <h3 class="book-room-form__second-header"> rum information </h3>
         <div class="important-info">
@@ -25,12 +26,12 @@
           <input v-model.number="form.adults" class="input" type="number" placeholder="antal vuxna" />
           <input v-model.number="form.children" class="input" type="number" placeholder="antal barn" />
         </div>
-
         <div class="two-input-container">
           <input v-model.number="form.caravan_spots" class="input" type="number" placeholder="antal husvangsplatser" />
           <input v-model.number="form.tent_spots" class="input" type="number" placeholder="antal tältplatser" />
         </div>
       </div>
+
       <div class="period-info">
         <h3 class="book-room-form__second-header"> period information </h3>
         <div class="two-input-container">
@@ -70,7 +71,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 
-defineEmits(['closeBookForm'])
+const emits =  defineEmits(['closeBookForm, closeBookFormSuccess']);
 
 const form = useForm({
   name: '',
@@ -85,7 +86,11 @@ const form = useForm({
 })
 
 const reserve = () => {
-  form.post('/reserve-room')
+  form.post('/reserve-room', {
+      onSuccess() {
+          emits('closeBookFormSuccess')
+      }
+  })
 }
 
 </script>
