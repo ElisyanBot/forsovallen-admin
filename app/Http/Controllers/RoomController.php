@@ -73,9 +73,15 @@ class RoomController extends Controller
 
     public function getAvailableRooms(ReserveRoom $reserveRoom)
     {
+        //todo: add to constructor
        $bookedRoom = resolve(BookedRoom::class);
        $bookedRoomIds = $bookedRoom->getBookedRoomIds($reserveRoom);
 
        return Room::whereNotIn('id', $bookedRoomIds)->get();
     }
-}
+    public function getRoomsByReservation(ReserveRoom $reserveRoom)
+    {
+        $bookedRoom = resolve(BookedRoom::class);
+
+        return Room::whereIn('id', $bookedRoom->getBookedRoomsByReservedId($reserveRoom))->get();
+    }}

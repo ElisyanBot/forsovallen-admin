@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookedRoomController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReserveRoomController;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
   Route::resource('/reserve-rooms', ReserveRoomController::class)
     ->only(['show', 'destroy']);
 
-  Route::post('/book-room', [\App\Http\Controllers\BookedRoomController::class, 'storeMultiple']);
+  Route::post('/book-room', [BookedRoomController::class, 'storeMultiple']);
+    Route::delete('/book-room', [BookedRoomController::class, 'destroyMulitple']);
   // reservations routes
   Route::get('/reservations', [NotificationController::class, 'index']);
   Route::delete('/reservations/{id}', [NotificationController::class, 'destroy']);

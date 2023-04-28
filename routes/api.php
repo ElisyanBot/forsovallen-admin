@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([], function () {
-
-    Route::get('/rooms/{reserveRoom}', [RoomController::class, 'getAvailableRooms']);
-
+    Route::get('/rooms/{reserveRoom}/available', [RoomController::class, 'getAvailableRooms']);
+    route::get( '/rooms/{reserveRoom}', [RoomController::class, 'getRoomsByReservation']);
 });

@@ -1,6 +1,7 @@
 <template>
     <div class="selected-room-item">
         <input
+            v-model="checkedStatus"
             @change="$emit('selectedRoomValue', id)"
             type="checkbox"
             :id="id"
@@ -14,13 +15,17 @@
 </template>
 
 <script setup>
-    defineProps({
+    import { ref } from 'vue';
+    const props = defineProps({
         id: Number,
         title: String,
         beds: Number,
+        checked: Boolean,
     })
 
     defineEmits(['selectedRoomValue']);
+
+    const checkedStatus = ref(props.checked);
 </script>
 
 <style scoped lang="scss">

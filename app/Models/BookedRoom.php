@@ -45,4 +45,14 @@ class BookedRoom extends Model
 
         return array_unique($roomIds->pluck('room_id')->toArray());
     }
+
+    /**
+     * Get all booked rooms with resereved_room id
+     */
+    public function getBookedRoomsByReservedId(ReserveRoom $reserveRoom)
+    {
+        $rooms = self::where('reserve_room_id', $reserveRoom->id)->get();
+
+        return array_unique($rooms->pluck('room_id')->toArray());
+    }
 }

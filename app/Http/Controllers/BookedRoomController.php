@@ -21,7 +21,17 @@ class BookedRoomController extends Controller
 
         Notification::route('mail', $validated['email'])
             ->notify(new \App\Notifications\CreatedBookingNotification());
-        //todo: send email to user that bookings are done
+    }
 
+    public function destroyMulitple(Request $request)
+    {
+        $validated = $request->validate([
+            'rooms' => 'required|array',
+            'rooms.*.room_id' => 'required|int',
+        ]);
+
+        foreach ($validated['rooms'] as $bookedRoom) {
+            BookedRoom::destroy($bookedRoom->room_id);
+        }
     }
 }
