@@ -95,4 +95,100 @@ const handleClick = () => {
       text-transform: uppercase;
     }
   }
+  
+  @media screen and (max-width: 1300px) {
+    .info-icon {
+      width: 20rem;
+    }
+
+    .info-icon__background {
+      div {
+        width: 15rem;
+        height: 15rem;
+      }
+    }
+
+    .info-icon__text {
+      p {
+        font-size: 2.2rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .info-icon {
+      width: 20rem;
+    }
+
+    .info-icon__background {
+      div {
+        width: 15rem;
+        height: 15rem;
+      }
+    }
+
+    .info-icon__text {
+      p {
+        font-size: 2.2rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 950px) {
+    .info-icon {
+      width: 15rem ;
+    }
+
+    .info-icon__background {
+      div {
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+
+    .info-icon__text {
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .info-icon {
+      width: 10rem ;
+    }
+
+    .info-icon__background {
+      div {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 1px;
+      }
+    }
+
+    .info-icon__text {
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .info-icon {
+      width: 6rem;
+    }
+
+    .info-icon__background {
+      div {
+        width: 4rem;
+        height: 4rem;
+      }
+    }
+
+    .info-icon__text {
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
 </style>

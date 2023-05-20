@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <div class="room-info">
+      <!-- <div class="room-info">
         <h3 class="book-room-form__second-header"> rum information </h3>
         <div class="important-info">
           <p class="info-divider">
@@ -64,14 +64,14 @@
           </p>
         </div>
         <button class="book-room-form__button"> boka </button>
-      </div>
+      </div> -->
     </form>
   </div>
 </template>
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 
-const emits =  defineEmits(['closeBookForm, closeBookFormSuccess']);
+const emits =  defineEmits(['closeBookForm, closeBookFormSuccess'])
 
 const form = useForm({
   name: '',
@@ -87,9 +87,9 @@ const form = useForm({
 
 const reserve = () => {
   form.post('/reserve-room', {
-      onSuccess() {
-          emits('closeBookFormSuccess')
-      }
+    onSuccess() {
+      emits('closeBookFormSuccess')
+    },
   })
 }
 
@@ -211,4 +211,27 @@ const reserve = () => {
             }
         }
     }
+
+
+  @media screen and (max-width: 500px) {
+      .book-room-form__focus {
+        .book-room-form {
+            padding: 2rem;
+            margin: 0 2rem;
+
+            .book-room-form__header {
+                font-size: 2rem;
+
+                button {
+                    width: 2.8rem;
+                    height: 2.8rem;
+                    border: none;
+                    border-radius: 0.5rem;
+                    padding: 0;
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+  }
 </style>

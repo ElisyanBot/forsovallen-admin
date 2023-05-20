@@ -9,7 +9,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-
+    overflow: hidden;
     width: 100%;
     max-width: 130rem;
   }

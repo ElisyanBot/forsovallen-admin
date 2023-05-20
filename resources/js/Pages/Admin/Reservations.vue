@@ -9,10 +9,10 @@
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident hic vero sint ducimus recusandae tempore commodi id nobis aliquid.
       Deserunt provident commodi cupiditate architecto ratione libero quos numquam aliquam repudiandae.
 
-        <Reservations :reservations="reservations" />
+      <Reservations :reservations="reservations" />
     </MainWidthLayout>
   </main>
-    <FooterImgBanner />
+  <FooterImgBanner />
   <footer />
 </template>
 
@@ -22,7 +22,7 @@ import {Link, usePage} from '@inertiajs/vue3'
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 import Reservations from '../../features/Reservations/Reservations.vue'
 import {computed} from 'vue'
-import FooterImgBanner from "../../components/FooterImgBanner.vue";
+import FooterImgBanner from '../../components/FooterImgBanner.vue'
 
 
 const props = defineProps({

@@ -1,27 +1,27 @@
 <template>
   <section id="book-room">
     <!-- popups -->
-      <BookRoomForm
-        v-if="showBookForm"
-        @close-book-form="showBookForm = false"
-        @close-book-form-success="closeBookFormSuccess"
+    <BookRoomForm
+      v-if="showBookForm"
+      @close-book-form="showBookForm = false"
+      @close-book-form-success="closeBookFormSuccess"
     />
-      <Model
-          v-if="showModel && !showBookForm"
-        title="Tack för att du väljer frösövallen"
-          @close-model="closeModel"
-      >
-          <p>
-              Du har nu skapat en reservation på frösövallens vandrarhem,
-              vi kommer att ta kontakt med dig så snart vi har kontrollerat
-              vi har plats för din önskade bokning.
-          </p>
-          <template #btns>
-              <button class="btn--cta"> stäng </button>
-          </template>
-      </Model>
+    <Model
+      v-if="showModel && !showBookForm"
+      title="Tack för att du väljer frösövallen"
+      @close-model="closeModel"
+    >
+      <p>
+        Du har nu skapat en reservation på frösövallens vandrarhem,
+        vi kommer att ta kontakt med dig så snart vi har kontrollerat
+        vi har plats för din önskade bokning.
+      </p>
+      <template #btns>
+        <button class="btn--cta"> stäng </button>
+      </template>
+    </Model>
 
-      <!-- content -->
+    <!-- content -->
     <UpperDivider />
     <BookCta @book-room-action="openBookForm" />
     <DisplayRooms :rooms="rooms" />
@@ -43,13 +43,13 @@ defineProps({
 })
 
 const showBookForm = ref(false)
-const showModel = ref(false);
+const showModel = ref(false)
 const openBookForm = () => {
   showBookForm.value = true
 }
 const closeBookFormSuccess = () => {
-    showBookForm.value = false
-    showModel.value = true
+  showBookForm.value = false
+  showModel.value = true
 }
 
 const openModel = () => {
@@ -79,5 +79,4 @@ const closeModel = () => {
         text-transform: uppercase;
         cursor: pointer;
     }
-
 </style>

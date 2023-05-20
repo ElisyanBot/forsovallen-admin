@@ -68,4 +68,30 @@ const handleClick = () => {
       color: #f37563;
     }
   }
+
+
+  @media screen and (max-width: 1000px) {
+    .food-table__category {
+      max-width: 15rem;
+      height: 15rem;
+
+      h4 {
+        font-size: 2.2rem;
+      }
+      svg {
+        width: 15rem;
+        height: 8.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .food-table__category {
+      width: 10rem;
+      height: 10rem;
+      h4 {
+       font-size: 1.3rem; 
+      }
+    }
+  }
 </style>

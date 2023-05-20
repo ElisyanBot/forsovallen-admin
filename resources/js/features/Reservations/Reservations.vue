@@ -1,28 +1,28 @@
-<template >
-    <main>
-        <MainWidthLayout>
-            <div class="reservation__header">
-                <h2> Reserveringar </h2>
-                <Filter />
-            </div>
-            <section class="handle-reservation-section">
-                <HandleReservationItem v-if="reservations.length" v-for="res in reservations" :key="res.data.id" :reservation="res" />
-                <div v-else>
-                    inga aktiva reservationer
-                </div>
-            </section>
-        </MainWidthLayout>
-    </main>
+<template>
+  <main>
+    <MainWidthLayout>
+      <div class="reservation__header">
+        <h2> Reserveringar </h2>
+        <Filter />
+      </div>
+      <section class="handle-reservation-section">
+        <HandleReservationItem v-for="res in reservations" v-if="reservations.length" :key="res.data.id" :reservation="res" />
+        <div v-else>
+          inga aktiva reservationer
+        </div>
+      </section>
+    </MainWidthLayout>
+  </main>
 </template>
 
 <script setup>
-    import MainWidthLayout from "../../layouts/MainWidthLayout.vue";
-    import HandleReservationItem from "./components/HandleReservationItem.vue";
-    import Filter from "./components/Filter.vue";
+import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
+import HandleReservationItem from './components/HandleReservationItem.vue'
+import Filter from './components/Filter.vue'
 
-   const props = defineProps({
-        reservations: Array,
-    })
+const props = defineProps({
+  reservations: Array,
+})
 
 </script>
 

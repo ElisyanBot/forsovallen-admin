@@ -12,7 +12,7 @@
 
         .divider__green-corner {
             width: 100%;
-            max-width: 145rem;
+            // max-width: 145rem;
             height: 7rem;
             background-color: #7D9A89;
         }

@@ -1,31 +1,31 @@
 <template>
-    <div class="selected-room-item">
-        <input
-            v-model="checkedStatus"
-            @change="$emit('selectedRoomValue', id)"
-            type="checkbox"
-            :id="id"
-            :name="id"
-            :value="id"
-        />
-        <label  :for="id">
-            {{title}}: {{ beds }} sängar
-        </label>
-    </div>
+  <div class="selected-room-item">
+    <input
+      :id="id"
+      v-model="checkedStatus"
+      type="checkbox"
+      :name="id"
+      :value="id"
+      @change="$emit('selectedRoomValue', id)"
+    />
+    <label :for="id">
+      {{ title }}: {{ beds }} sängar
+    </label>
+  </div>
 </template>
 
 <script setup>
-    import { ref } from 'vue';
-    const props = defineProps({
-        id: Number,
-        title: String,
-        beds: Number,
-        checked: Boolean,
-    })
+import { ref } from 'vue'
+const props = defineProps({
+  id: Number,
+  title: String,
+  beds: Number,
+  checked: Boolean,
+})
 
-    defineEmits(['selectedRoomValue']);
+defineEmits(['selectedRoomValue'])
 
-    const checkedStatus = ref(props.checked);
+const checkedStatus = ref(props.checked)
 </script>
 
 <style scoped lang="scss">

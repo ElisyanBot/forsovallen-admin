@@ -167,6 +167,38 @@ const handleClick = () => {
     }
   }
 
+
+  @media screen and (max-width: 1000px) {
+    #food-table__img-header {
+      img {
+      }
+    }
+
+    .food-table {
+    }
+
+    .food-table__items {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      .food-table__divider {
+        display: none;
+      }
+    }
+
+    .food-table__categories {
+      justify-content: center;
+      gap: 5%;
+    }
+    .food-table__items--expanded {
+    }
+
+    .food-table__btn-container {
+      button {
+      }
+    }
+  }
+
   @keyframes expand-animation {
     0% {
       max-height: 50rem;

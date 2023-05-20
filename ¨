@@ -35,7 +35,6 @@ import MainWidthLayout from '../layouts/MainWidthLayout.vue'
 </script>
 
 <style lang="scss">
-
   #about-us {
     margin: 11rem 0;
   }
@@ -104,121 +103,79 @@ import MainWidthLayout from '../layouts/MainWidthLayout.vue'
   //------- media -----------------------------------
 
   @media screen and (max-width: 1300px) {
-      #about-us {
-        margin: 11rem 0;
-      }
+    #about-us {
+    margin: 11rem 0;
+  }
 
-    .about-us__outer-div {
-      display:flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
-      height: 100%;
-      padding: 0 4rem;
+  .about-us__outer-div {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    height: 100%;
 
-      h2 {
-          align-self: flex-start;
-          color: #c64533;
-          font-size: 6.4rem;
-          text-transform: uppercase;
-      }
-    }
-
-    .about-us__background-shape {
-      height: 30rem;
-      width: 100%;
-      position: relative;
-      top: 0;
-      left: 0;
-    }
-
-    .about-us__inner-div {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      z-index: 1;
-
-      .about-us__info-txt {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        h3 {
-          color: #505050;
-          font-size: 4.8rem;
-          text-transform: uppercase;
-          margin-bottom: 5rem;
-        }
-
-        p {
-          width: 100%;
-          font-size: 2.2rem;
-          color: #464646;
-          margin-bottom: 2rem;
-          letter-spacing: 0.22rem;
-        }
-      }
-    }
-
-    .about-us__info-txt {
-      // width: 100rem;
-    }
-
-    .about-us__img-container {
-        position: relative;
-        bottom: -20rem;
-    }
-
-    .about-us__img-container > img {
-      width: 50rem;
-      height:  50rem;
-      object-fit: contain;
+    h2 {
+      color: #c64533;
+      font-size: 6.4rem;
+      text-transform: uppercase;
     }
   }
 
-  @media screen and (max-width: 500px) {
-      #about-us {
-      }
+  .about-us__background-shape {
+    height: 68rem;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
 
-    .about-us__outer-div {
-      h2 {
-        font-size: 3rem;
-      }
-    }
-
-    .about-us__background-shape {
-      height: 15rem;
-    }
-
-    .about-us__inner-div {
-      height: 45rem;
-      .about-us__info-txt {
-
-        h3 {
-          font-size: 2rem;
-          margin-bottom: 3rem;
-        }
-
-        p {
-          font-size: 1.2rem;
-        }
-      }
-    }
+  .about-us__inner-div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 15rem);
+    z-index: 1;
 
     .about-us__info-txt {
-    }
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-    .about-us__img-container {
-      top: 4rem;
-    }
+      h3 {
+        color: #505050;
+        font-size: 4.8rem;
+        text-transform: uppercase;
+        margin-bottom: 5rem;
+      }
 
-    .about-us__img-container > img {
-      height: 20rem;
+      p {
+        width: 44rem;
+        font-size: 2.2rem;
+        color: #464646;
+        margin-bottom: 2rem;
+        letter-spacing: 0.22rem;
+      }
     }
-  } 
+  }
+
+  .about-us__info-txt {
+    // width: 100rem;
+  }
+
+  .about-us__img-container {
+      position: absolute;
+      bottom: 0;
+  }
+
+  .about-us__img-container > img {
+    width: 50rem;
+    height: 53rem;
+    object-fit: contain;
+  }
+
+
+  }
 </style>
 about-us__inner-div

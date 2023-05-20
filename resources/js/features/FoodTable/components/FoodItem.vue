@@ -116,4 +116,40 @@ defineProps({
       border-radius: 0.5rem;
     }
   }
+
+
+  @media screen and (max-width: 500px) {
+  .food-item {
+    height: 14rem;
+    picture {
+        max-width: 12rem;
+    }
+  }
+  .food-item__text-block {
+    height: 10rem;
+    h5 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+  .food-item--disabled {
+    picture {
+
+      img {
+      }
+    }
+    .food-item__text-block {
+    }
+  }
+
+  .food-item__picture--disabled {
+    p {
+      padding: 0.5rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  }
 </style>

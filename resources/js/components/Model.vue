@@ -1,28 +1,28 @@
 <template>
-    <section class="model__focus-background" @click="$emit('closeModel')">
-        <div class="model model--small">
-            <div class="model__header">
-                <h3> {{ title }} </h3>
-            </div>
-            <div class="model__body">
-                <slot />
-            </div>
-            <div class="model__btns">
-                <slot name="btns" />
-            </div>
-        </div>
-    </section>
+  <section class="model__focus-background" @click="$emit('closeModel')">
+    <div class="model model--small">
+      <div class="model__header">
+        <h3> {{ title }} </h3>
+      </div>
+      <div class="model__body">
+        <slot />
+      </div>
+      <div class="model__btns">
+        <slot name="btns" />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
-    defineEmits(['closeModel']);
+defineEmits(['closeModel'])
 
-    defineProps( {
-        title: {
-            type: String,
-            required: true
-        }
-    });
+defineProps( {
+  title: {
+    type: String,
+    required: true,
+  },
+})
 </script>
 
 <style scoped lang="scss">

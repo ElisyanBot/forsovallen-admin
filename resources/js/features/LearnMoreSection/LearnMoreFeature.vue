@@ -64,7 +64,7 @@ const arrowPlacement = ref(null)
 
 watchEffect(() => {
   if (currentInfoObj.value === 'cafe') {
-    arrowPlacement.value = 8.1
+    arrowPlacement.value = 6
   }
   if (currentInfoObj.value === 'vandrarhem') {
     arrowPlacement.value = 34
@@ -93,6 +93,35 @@ watchEffect(() => {
       height: 5.5rem;
       width: 8rem;
       transition: all 0.5s;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .icon__container {
+      width: 100%;
+      padding: 0 4rem;
+    }
+    .info-text__line-animation {
+      margin: 4rem 0 0 0;
+      width: 100%;
+      padding: 0 4rem;
+      img {
+        width: 100%;
+      }
+      .line-green__arrow {
+        position: relative;
+        width: 4rem;
+        transform:translateY(-0.9rem);
+        margin-right: 8rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .info-text__line-animation {
+      img {
+        height: 4px;
+      }
     }
   }
 </style>

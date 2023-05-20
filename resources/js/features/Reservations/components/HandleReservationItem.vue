@@ -1,17 +1,15 @@
 <template>
   <div class="handle-reservation">
-
     <!-- reservation item section -->
 
     <article class="reservation-item">
-      <div class="reservation-item__status">
-      </div>
-      <div class="reservation-item__short-info" >
-          <p> {{reservation.data.id}} </p>
-          <p> {{reservation.data.email}} </p>
-          <p> sängar: {{totalBeds}} </p>
-          <p>pris: {{totalCost}} kr</p>
-          <p> ohanterad </p>
+      <div class="reservation-item__status" />
+      <div class="reservation-item__short-info">
+        <p> {{ reservation.data.id }} </p>
+        <p> {{ reservation.data.email }} </p>
+        <p> sängar: {{ totalBeds }} </p>
+        <p>pris: {{ totalCost }} kr</p>
+        <p> ohanterad </p>
       </div>
       <div class="reservation-item__btns">
         <button @click="handleDeleteItem"> delete </button>
@@ -23,72 +21,72 @@
 
     <section v-if="displayForm" class="reservation-form">
       <section class="reservation-form__info">
-          <div class="reservation-form__header">
-              <h3> bekräfta bokningen </h3>
-          </div>
-          <div class="reservation-form__customer-info" >
-              <p class="customer-info"> <b> namn </b>  <span> {{ reservation.data.name }} </span></p>
-              <p class="customer-info"> <b> email </b>  <span> {{ reservation.data.email }} </span></p>
-              <p class="customer-info"> <b> mobilnumber </b>  <span> {{ reservation.data.phone }} </span></p>
-              <p class="customer-info">
-                  <b> period </b>
-                  <span>{{ reservation.data.check_in }} - {{ reservation.data.check_out }}</span>
-              </p>
-          </div>
+        <div class="reservation-form__header">
+          <h3> bekräfta bokningen </h3>
+        </div>
+        <div class="reservation-form__customer-info">
+          <p class="customer-info"> <b> namn </b>  <span> {{ reservation.data.name }} </span></p>
+          <p class="customer-info"> <b> email </b>  <span> {{ reservation.data.email }} </span></p>
+          <p class="customer-info"> <b> mobilnumber </b>  <span> {{ reservation.data.phone }} </span></p>
+          <p class="customer-info">
+            <b> period </b>
+            <span>{{ reservation.data.check_in }} - {{ reservation.data.check_out }}</span>
+          </p>
+        </div>
 
-          <div class="reservation-form__booking-info" >
-              <p class="booking-info"> <b> vuxna </b>  <span> {{ reservation.data.adults }} </span></p>
-              <p class="booking-info"> <b> barn </b>  <span> {{ reservation.data.children }} </span></p>
-              <p class="booking-info"> <b> tältplatser </b>  <span> {{ reservation.data.tent_spots }} </span></p>
-              <p class="booking-info"> <b> husvagnsplatser </b>  <span> {{ reservation.data.caravan_spots }} </span></p>
-              <p class="booking-info"> <b> totalt pris  </b>  <span> {{ totalCost }} kr </span></p>
-          </div>
+        <div class="reservation-form__booking-info">
+          <p class="booking-info"> <b> vuxna </b>  <span> {{ reservation.data.adults }} </span></p>
+          <p class="booking-info"> <b> barn </b>  <span> {{ reservation.data.children }} </span></p>
+          <p class="booking-info"> <b> tältplatser </b>  <span> {{ reservation.data.tent_spots }} </span></p>
+          <p class="booking-info"> <b> husvagnsplatser </b>  <span> {{ reservation.data.caravan_spots }} </span></p>
+          <p class="booking-info"> <b> totalt pris  </b>  <span> {{ totalCost }} kr </span></p>
+        </div>
       </section>
-      <div class="reservation-form__divider" > </div>
+      <div class="reservation-form__divider" />
 
       <form
-          @submit.prevent=" showAvailableRooms ? createBooking : removeBookedRoom"
-          class="reservation-form__room-select"
+        class="reservation-form__room-select"
+        @submit.prevent="createBooking"
       >
-        <div class="reservation-from__header" >
-            <div>
-                <h4> välj rum </h4>
-                <p> {{selectedRooms.length }} st valda </p>
-            </div>
-            <div class="select-room__tabs">
-               <button @click.prevent="handleAddAvailableRoomsTab"> lägg till </button>
-                <button @click.prevent="handleEditRoomsTab" > ändra </button>
-            </div>
+        <div class="reservation-from__header">
+          <div>
+            <h4> välj rum </h4>
+            <p> {{ selectedRooms.length }} st valda </p>
+          </div>
+          <div class="select-room__tabs">
+            <button @click.prevent="handleAddAvailableRoomsTab"> lägg till </button>
+            <button @click.prevent="handleEditRoomsTab"> ändra </button>
+          </div>
         </div>
-        <div class="reservation-form__room-select-list" >
-            <SelectRoomItem
-                v-if="showAvailableRooms"
-                @selected-room-value=" (id) => {
-                    addSelectedRoom(selectedRooms, id)
-                }"
-                v-for="room in availableRooms"
-                :key="room.id"
-                :id="room.id"
-                :title="room.title"
-                :beds="room.beds"
-            />
+        <div class="reservation-form__room-select-list">
+          <SelectRoomItem
+            v-for="room in availableRooms"
+            v-if="showAvailableRooms"
+            :id="room.id"
+            :key="room.id"
+            :title="room.title"
+            :beds="room.beds"
+            @selected-room-value=" (id) => {
+              addSelectedRoom(selectedRooms, id)
+            }"
+          />
 
-            <SelectRoomItem
-                v-if="!showAvailableRooms"
-                @selected-room-value=" (id) => {
-                    addSelectedRoom(selectedRooms, id)
-                }"
-                v-for="room in bookedRooms"
-                :key="room.id"
-                :id="room.id"
-                :title="room.title"
-                :beds="room.beds"
-                :checked="true"
-            />
+          <SelectRoomItem
+            v-for="room in bookedRooms"
+            v-if="!showAvailableRooms"
+            :id="room.id"
+            :key="room.id"
+            :title="room.title"
+            :beds="room.beds"
+            :checked="true"
+            @selected-room-value=" (id) => {
+              addSelectedRoom(selectedRooms, id)
+            }"
+          />
         </div>
-        <div class="reservation-form__cta-btns" >
-            <button class="handle-reservation__deny-bnt" @mouseup="closeForm"> stäng </button>
-            <button type="submit" class="handle-reservation__accept-btn" > acceptera </button>
+        <div class="reservation-form__cta-btns">
+          <button class="handle-reservation__deny-bnt" @mouseup="closeForm"> stäng </button>
+          <button type="submit" class="handle-reservation__accept-btn"> acceptera </button>
         </div>
       </form>
     </section>
@@ -96,142 +94,142 @@
 </template>
 
 <script setup>
-    import {router, useForm} from '@inertiajs/vue3'
-    import { ref, computed} from 'vue';
-    import SelectRoomItem from "./SelectRoomItem.vue";
+import {router, useForm} from '@inertiajs/vue3'
+import { ref, computed} from 'vue'
+import SelectRoomItem from './SelectRoomItem.vue'
 
-    const props = defineProps({
-      reservation: Object,
-    })
+const props = defineProps({
+  reservation: Object,
+})
 
 
-    const displayForm = ref(false);
-    const availableRooms = ref(null);
-    const bookedRooms = ref(null);
-    const selectedRooms = ref([]);
-    const showAvailableRooms = ref(true);
+const displayForm = ref(false)
+const availableRooms = ref(null)
+const bookedRooms = ref(null)
+const selectedRooms = ref([])
+const showAvailableRooms = ref(true)
 
-    const totalBeds = computed(() => props.reservation.data.adults + props.reservation.data.children)
-    const totalCost = computed(() =>
-        (props.reservation.data.adults * 270)
+const totalBeds = computed(() => props.reservation.data.adults + props.reservation.data.children)
+const totalCost = computed(() =>
+  (props.reservation.data.adults * 270)
         + (props.reservation.data.children * 100)
         + (props.reservation.data.tent_spots * 195)
-        + (props.reservation.data.caravan_spots * 250)
-    );
+        + (props.reservation.data.caravan_spots * 250),
+)
 
-    const openForm = async () => {
-        availableRooms.value = await fetchAvailableRooms();
-        displayForm.value = true
-    }
-    const closeForm = () => {
-        displayForm.value = false
-        selectedRooms.value = [];
-    }
-
-
-    const addSelectedRoom = (array, roomId) => {
-        const arr = array;
-
-        if(arr.find(i => i === roomId)) {
-            arr.splice(arr.indexOf(roomId), 1);
-            return arr;
-        }
-        console.log(arr);
-        return arr.push(roomId);
-    }
-
-    const handleEditRoomsTab = async () => {
-        if(!showAvailableRooms.value) return;
-
-        selectedRooms.value = [];
-        showAvailableRooms.value = false;
-        bookedRooms.value = await fetchRoomsById().then();
-    }
-
-    const handleAddAvailableRoomsTab =  async () =>{
-        if(showAvailableRooms.value) return;
-
-        selectedRooms.value = [];
-        showAvailableRooms.value = true;
-        availableRooms.value = await fetchAvailableRooms();
-    }
+const openForm = async () => {
+  availableRooms.value = await fetchAvailableRooms()
+  displayForm.value = true
+}
+const closeForm = () => {
+  displayForm.value = false
+  selectedRooms.value = []
+}
 
 
-    //todo: make this to a better solution
-    const handleDeleteItem = () => {
-        router.delete(`/admin/reserve-rooms/${props.reservation.data.id}`, {
-            onSuccess: () => {
-                router.delete(`/admin/reservations/${props.reservation.notice_id}`);
-            }
-        });
-    }
+const addSelectedRoom = (array, roomId) => {
+  const arr = array
 
-    const createBooking = () => {
-        const form = useForm({
-            bookings: [],
-            email: props.reservation.data.email,
-        });
+  if(arr.find(i => i === roomId)) {
+    arr.splice(arr.indexOf(roomId), 1)
+    return arr
+  }
+  console.log(arr)
+  return arr.push(roomId)
+}
 
-        selectedRooms.value.forEach((roomId) => {
-            form.bookings.push({
-                room_id: roomId,
-                reserve_room_id: props.reservation.data.id,
-                start_date: props.reservation.data.check_in,
-                end_date: props.reservation.data.check_out,
-            });
-        })
+const handleEditRoomsTab = async () => {
+  if(!showAvailableRooms.value) return
 
-        form.post(`/admin/book-room`, {
-            onSuccess: () => {
-            },
-            onError: () => {
-                alert('bokningen misslyckades');
-            }
-        });
-    }
+  selectedRooms.value = []
+  showAvailableRooms.value = false
+  bookedRooms.value = await fetchRoomsById().then()
+}
 
-    const removeBookedRoom = () => {
-        const form = useForm({
-            rooms: [],
-        });
+const handleAddAvailableRoomsTab =  async () =>{
+  if(showAvailableRooms.value) return
 
-        selectedRooms.value.forEach((roomId) => {
-            form.rooms.push({
-                room_id: roomId,
-            });
-        })
+  selectedRooms.value = []
+  showAvailableRooms.value = true
+  availableRooms.value = await fetchAvailableRooms()
+}
 
-        form.post(`/admin/book-room`, {
-            onSuccess() {
-            },
-            onError: () => {
-                alert('form error');
-            }
-        });
-    }
 
-    const fetchRoomsById = async () => {
-        const rooms = await fetch(`/api/rooms/${props.reservation.data.id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        });
-        return await rooms.json();
-    }
+//todo: make this to a better solution
+const handleDeleteItem = () => {
+  router.delete(`/admin/reserve-rooms/${props.reservation.data.id}`, {
+    onSuccess: () => {
+      router.delete(`/admin/reservations/${props.reservation.notice_id}`)
+    },
+  })
+}
 
-    const fetchAvailableRooms = async () => {
-        //todo: change endpoint to correct REST endpoint
-        const rooms = await fetch(`/api/rooms/${props.reservation.data.id}/available`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        });
-        return await rooms.json();
-    }
+const createBooking = () => {
+  const form = useForm({
+    bookings: [],
+    email: props.reservation.data.email,
+  })
+
+  selectedRooms.value.forEach((roomId) => {
+    form.bookings.push({
+      room_id: roomId,
+      reserve_room_id: props.reservation.data.id,
+      start_date: props.reservation.data.check_in,
+      end_date: props.reservation.data.check_out,
+    })
+  })
+
+  form.post('/admin/book-room', {
+    onSuccess: () => {
+    },
+    onError: () => {
+      alert('bokningen misslyckades')
+    },
+  })
+}
+
+const removeBookedRoom = () => {
+  const form = useForm({
+    rooms: [],
+  })
+
+  selectedRooms.value.forEach((roomId) => {
+    form.rooms.push({
+      room_id: roomId,
+    })
+  })
+
+  form.post('/admin/book-room', {
+    onSuccess() {
+    },
+    onError: () => {
+      alert('form error')
+    },
+  })
+}
+
+const fetchRoomsById = async () => {
+  const rooms = await fetch(`/api/rooms/${props.reservation.data.id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  return await rooms.json()
+}
+
+const fetchAvailableRooms = async () => {
+  //todo: change endpoint to correct REST endpoint
+  const rooms = await fetch(`/api/rooms/${props.reservation.data.id}/available`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  return await rooms.json()
+}
 </script>
 
 <style scoped lang="scss">

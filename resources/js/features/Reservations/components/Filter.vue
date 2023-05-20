@@ -1,10 +1,8 @@
 <template>
-    <div class="filter__section">
-        <button> filter </button>
-        <div class="filter__dropdown">
-
-        </div>
-    </div>
+  <div class="filter__section">
+    <button> filter </button>
+    <div class="filter__dropdown" />
+  </div>
 </template>
 
 <style scoped lang="scss">

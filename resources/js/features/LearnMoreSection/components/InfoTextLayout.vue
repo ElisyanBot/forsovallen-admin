@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
   .info-text__layout {
     display: flex;
     flex-direction: column;

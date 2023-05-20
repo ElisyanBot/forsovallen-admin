@@ -32,9 +32,10 @@ import NavLinkItem from './components/NavLinkItem.vue'
     align-items: center;
     height: 80rem;
     img {
-      width: 192.5rem;
+      width: 100%;
+      max-width: 192.5rem;
       height: 80rem;
-      object-fit: fill;
+      object-fit: cover;
     }
   }
   .header-nav {
@@ -90,5 +91,21 @@ import NavLinkItem from './components/NavLinkItem.vue'
     display: flex;
     justify-content: space-between;
     height: inherit;
+  }
+  
+
+  @media screen and (max-width: 1300px) {
+   .main-header__img {
+      img {
+        object-fit: cover;
+      }
+    }
+  } 
+  
+  @media screen and (max-width: 800px) {
+    .header-nav {
+      display: none;
+    } 
+
   }
 </style>

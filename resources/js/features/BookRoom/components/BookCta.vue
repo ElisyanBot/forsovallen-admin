@@ -80,4 +80,31 @@ defineEmits(['bookRoomAction'])
             cursor: pointer;
         }
     }
+
+  @media screen and (max-width: 500px) {
+    section.book-cta {
+      height: 50rem;
+      .book-cta__green-background {
+        display: none;
+      }
+    
+      .book-cta__text-container {
+        height: 30rem;
+        max-width: 36rem;
+        margin: 0 4rem;
+        h2 {
+         font-size: 2.5rem;
+        }
+        h3 {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+      }   
+      button {
+        max-width: 30rem;
+        font-size: 2rem;
+        height: 8rem;
+      }
+    }
+  }
 </style>
