@@ -8,16 +8,20 @@
         <NavItem text="cafe" go-to="#cafe" />
         <NavItem text="meny" go-to="#meny" />
       </ul>
-      <div class="header-nav__logo">logo</div>
+      <div class="header-nav__logo">
+        <img src="/img/logo.svg" alt="logo" />
+      </div>
       <ul class="header-nav__desktop-menu-row">
         <NavLinkItem text="evenemang" a-link="/events" />
         <NavLinkItem target="_blank" text="hitta hit" a-link="https://facebook.com" />
       </ul>
     </header>
   </MainWidthLayout>
+  <MobileMenu />
 </template>
 
 <script setup>
+import MobileMenu from '../../components/MobileMenu.vue';
 import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 import NavItem from './components/NavItem.vue'
 import NavLinkItem from './components/NavLinkItem.vue'
@@ -56,7 +60,7 @@ import NavLinkItem from './components/NavLinkItem.vue'
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
     border-radius: 0.5rem;
     position: absolute;
-    z-index: 9999;
+    z-index: 10000;
     left: 0;
     right: 0;
     top: -8rem;
@@ -102,7 +106,7 @@ import NavLinkItem from './components/NavLinkItem.vue'
     }
   } 
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1100px) {
     .header-nav {
       display: none;
     } 

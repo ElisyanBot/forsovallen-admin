@@ -133,4 +133,63 @@ const date = moment(props.item.date).format('DD MMMM YYYY').split(' ')
             }
         }
     }
+
+  @media screen and (max-width: 1000px) {
+      .reverseCard {
+        margin-left: 4rem;
+      }
+      .event-card {
+        flex-direction: row-reverse;
+        margin-left: 4rem;
+        gap: 2rem;
+        article {
+            padding: 1rem 2rem;
+            margin: 0 2rem 2rem 0;
+            .header {
+                h3 {
+                  font-size: 1.6rem;
+                }
+            }
+
+            .content {
+              p {
+                font-size: 1.2rem;
+              }
+            }
+
+            .footer {
+              font-size: 1.4rem;
+              height: 5em;
+              gap: 1rem;
+            }
+        }
+
+        .timeline {
+            .date-section {
+              font-size: 1.4rem;
+                p:nth-child(2)  {
+                }
+            }
+
+            .line {
+            }
+        }
+    }
+  }
+
+
+
+  @media screen and (max-width: 1630px) {
+    .event-card {
+      flex-direction: row-reverse;
+      margin: auto;
+      margin-bottom: 5rem;
+    }
+
+    .reverseCard {
+      margin: auto;
+      margin-bottom: 5rem;
+    }
+  }
+
 </style>

@@ -6,12 +6,14 @@
         <button @click="$emit('closeBookForm')"> x </button>
       </div>
       <div class="text-info">
-        <h3 class="book-room-form__second-header"> infomation </h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Quisque ligula erat, viverra eu urna a, porttitor elementum augue.
-          Ut nec dui suscipit, ullamcorper lacus vitae, interdum justo.
+          Tack för att du vill boka boende hos försövallen, skicka gärna ett mail eller hör av er på telefon vid bokning av
+          boende. Vårat kontor har öppet: <b> 05:00 - 16:00 </b> varje vardag.
         </p>
+        <h3 class="book-room-form__second-header"> Kontaktuppgifter </h3>
+
+        <p class="book-room-form__info-text"><b> Mailadress: </b> <a href="mailto:info@frosovallen.se"> info@frosovallen.se</a></p>
+        <p class="book-room-form__info-text"><b> telefon: </b> <a> 070-0000000  </a> </p>
       </div>
 
       <!-- <div class="room-info">
@@ -154,7 +156,7 @@ const reserve = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-
+        padding: 0 4rem;
 
         .book-room-form {
             display: flex;
@@ -188,7 +190,8 @@ const reserve = () => {
             }
             .book-room-form__second-header {
                 text-transform: capitalize;
-                margin-bottom: 1rem;
+                margin: 2rem 0;
+                font-size: 2.2rem;
             }
 
             .book-room-form__btn-container {
@@ -211,14 +214,24 @@ const reserve = () => {
             }
         }
     }
+  
+  .book-room-form__info-text {
+    margin: 2rem;
+    color: #141918a3;
+    a {
+      text-decoration: none;
+      color: rgb(74, 150, 173);
+      font-weight: bold;
+    } 
 
-
-  @media screen and (max-width: 500px) {
+    b {
+      font-size:  1.8rem;
+    }
+  }
+  @media screen and (max-width: 800px) {
       .book-room-form__focus {
         .book-room-form {
             padding: 2rem;
-            margin: 0 2rem;
-
             .book-room-form__header {
                 font-size: 2rem;
 

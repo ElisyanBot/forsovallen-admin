@@ -16,7 +16,6 @@
 </template>
 <script setup>
 import HeaderNav from '../../features/HeaderNav/HeaderNav.vue'
-import MainWidthLayout from '../../layouts/MainWidthLayout.vue'
 import TimelineEventCard from '../../components/TimelineEventCard.vue'
 import FooterImgBanner from '../../components/FooterImgBanner.vue'
 
@@ -42,5 +41,11 @@ defineProps({
         font-weight: 700;
         margin: 8rem auto;
         padding: 0;
+    }
+
+    @media screen and (max-width: 800px){
+      .event__header {
+        font-size: 2.2rem;
+      }
     }
 </style>

@@ -21,7 +21,7 @@
     }
 
     
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 800px) {
    .book-room__upper-divider {
     height: 15rem;
    } 

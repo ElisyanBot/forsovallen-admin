@@ -3,7 +3,8 @@
     :class="{ 'food-table__category': true, 'food-table__category--selected': selected }"
     @click="handleClick"
   >
-    <FontAwesomeIcon :icon="['fas', fontAwesomeClass]" />
+  <i :class="`fas fa-${fontAwesomeClass}` "></i>
+    <!-- <FontAwesomeIcon :icon="['fas', fontAwesomeClass]" /> -->
     <h4>{{ text }}</h4>
   </div>
 </template>
@@ -40,7 +41,7 @@ const handleClick = () => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2.5rem;
+    gap: 1rem;
     width: 100%;
     max-width: 24.2rem;
     height: 21.5rem;
@@ -58,13 +59,12 @@ const handleClick = () => {
       text-transform: uppercase;
       font-weight: bold;
     }
-    svg {
-      width: 15rem;
-      height: 8.5rem;
+    i {
+      font-size: 5rem;
     }
   }
   .food-table__category--selected {
-    svg {
+    i {
       color: #f37563;
     }
   }
